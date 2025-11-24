@@ -167,7 +167,7 @@ class StudentScreen extends StatelessWidget {
                     label: 'Final Exam Schedule',
                     color: Colors.red,
                     onTap: () {
-                      // TODO: Navigate to Final Exam Schedule screen
+                      Navigator.pushNamed(context, FinalScheduleScreen.routeName);
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
                           content: Text('Opening Final Exam Schedule...'),
@@ -184,7 +184,7 @@ class StudentScreen extends StatelessWidget {
                     label: 'Settings',
                     color: Colors.grey,
                     onTap: () {
-                      // TODO: Navigate to Settings screen
+                      Navigator.pushNamed(context, SettingsScreen.routeName);
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
                           content: Text('Opening Settings...'),

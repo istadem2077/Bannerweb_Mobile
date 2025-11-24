@@ -23,6 +23,9 @@ class BannerWebApp extends StatelessWidget {
         FinancialAidScreen.routeName: (_) => const FinancialAidScreen(),
         DegreeAuditScreen.routeName: (_) => const DegreeAuditScreen(),
         HousingScreen.routeName: (_) => const HousingScreen(),
+
+        FinalScheduleScreen.routeName: (_) => const FinalScheduleScreen(),
+        SettingsScreen.routeName: (_) => const SettingsScreen(),
       },
       theme: ThemeData(
         primaryColor: const Color(0xFF1155CC),
