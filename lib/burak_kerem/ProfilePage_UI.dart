@@ -1,13 +1,13 @@
+import 'package:bannerweb_mobile/ismayil/Routes.dart';
+import 'package:bannerweb_mobile/ismayil/app_scaffold.dart';
 import 'package:flutter/material.dart';
 
 class StudentScreen extends StatelessWidget {
-  static const String routeName = '/student';
-
   const StudentScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return AppScaffold(
       currentIndex: 2,
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
@@ -16,18 +16,22 @@ class StudentScreen extends StatelessWidget {
           children: [
             // Profile Header Card
             Card(
+              elevation: 3,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(16),
               ),
-              elevation: 3,
               child: Padding(
                 padding: const EdgeInsets.all(20),
                 child: Column(
                   children: [
-                    const CircleAvatar(
+                    CircleAvatar(
                       radius: 40,
-                      backgroundColor: Color(0xFF1155CC),
-                      child: Icon(Icons.person, size: 48, color: Colors.white),
+                      backgroundColor: Theme.of(context).colorScheme.primary,
+                      child: Icon(
+                        Icons.person,
+                        size: 48,
+                        color: Theme.of(context).colorScheme.onPrimary,
+                      ),
                     ),
                     const SizedBox(height: 16),
                     const Text(
@@ -35,13 +39,17 @@ class StudentScreen extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 22,
                         fontWeight: FontWeight.bold,
-                        color: Colors.black87,
                       ),
                     ),
                     const SizedBox(height: 8),
-                    const Text(
+                    Text(
                       'Student ID: 00000000',
-                      style: TextStyle(fontSize: 16, color: Colors.black54),
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Theme.of(
+                          context,
+                        ).colorScheme.onSurface.withOpacity(0.6),
+                      ),
                     ),
                     const SizedBox(height: 12),
                     Container(
@@ -50,9 +58,9 @@ class StudentScreen extends StatelessWidget {
                         vertical: 8,
                       ),
                       decoration: BoxDecoration(
-                        color: Colors.green.shade50,
+                        color: Colors.green.withOpacity(0.1),
                         borderRadius: BorderRadius.circular(20),
-                        border: Border.all(color: Colors.green.shade300),
+                        border: Border.all(color: Colors.green),
                       ),
                       child: const Text(
                         'Active Student',
@@ -70,14 +78,10 @@ class StudentScreen extends StatelessWidget {
 
             const SizedBox(height: 24),
 
-            // Quick Information
+            // Quick Info Section
             const Text(
               'Quick Information',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Colors.black87,
-              ),
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 12),
 
@@ -86,7 +90,7 @@ class StudentScreen extends StatelessWidget {
               icon: Icons.school,
               title: 'Academic Status',
               value: 'Full-time',
-              color: const Color(0xFF1155CC),
+              color: Theme.of(context).colorScheme.primary,
             ),
             const SizedBox(height: 12),
             _InfoCard(
@@ -115,27 +119,20 @@ class StudentScreen extends StatelessWidget {
             // Quick Actions
             const Text(
               'Quick Actions',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Colors.black87,
-              ),
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 12),
 
-            // Action Buttons - First Row
+            // Action Buttons
             Row(
               children: [
                 Expanded(
                   child: _ActionButton(
                     icon: Icons.schedule,
                     label: 'Schedule',
-                    color: const Color(0xFF1155CC),
+                    color: Theme.of(context).colorScheme.primary,
                     onTap: () {
-                      Navigator.pushNamed(
-                        context,
-                        RegistrationScreen.routeName,
-                      );
+                      Navigator.pushNamed(context, AppRoutes.registration);
                     },
                   ),
                 ),
@@ -146,18 +143,39 @@ class StudentScreen extends StatelessWidget {
                     label: 'Grades',
                     color: Colors.orange,
                     onTap: () {
-                      Navigator.pushNamed(
-                        context,
-                        StudentRecordsScreen.routeName,
-                      );
+                      Navigator.pushNamed(context, AppRoutes.studentRecords);
                     },
                   ),
                 ),
               ],
             ),
             const SizedBox(height: 12),
-
-            // Action Buttons - Second Row (UPDATED)
+            Row(
+              children: [
+                Expanded(
+                  child: _ActionButton(
+                    icon: Icons.account_balance_wallet,
+                    label: 'Financial Aid',
+                    color: Colors.green,
+                    onTap: () {
+                      Navigator.pushNamed(context, AppRoutes.financialAid);
+                    },
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: _ActionButton(
+                    icon: Icons.home,
+                    label: 'Housing',
+                    color: Colors.purple,
+                    onTap: () {
+                      Navigator.pushNamed(context, AppRoutes.housing);
+                    },
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 12),
             Row(
               children: [
                 Expanded(
@@ -166,13 +184,7 @@ class StudentScreen extends StatelessWidget {
                     label: 'Final Exam Schedule',
                     color: Colors.red,
                     onTap: () {
-                      // TODO: Navigate to Final Exam Schedule screen
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Opening Final Exam Schedule...'),
-                          duration: Duration(seconds: 1),
-                        ),
-                      );
+                      Navigator.pushNamed(context, AppRoutes.finalExamSchedule);
                     },
                   ),
                 ),
@@ -183,13 +195,7 @@ class StudentScreen extends StatelessWidget {
                     label: 'Settings',
                     color: Colors.grey,
                     onTap: () {
-                      // TODO: Navigate to Settings screen
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Opening Settings...'),
-                          duration: Duration(seconds: 1),
-                        ),
-                      );
+                      Navigator.pushNamed(context, AppRoutes.settings);
                     },
                   ),
                 ),
@@ -239,7 +245,12 @@ class _InfoCard extends StatelessWidget {
                 children: [
                   Text(
                     title,
-                    style: const TextStyle(fontSize: 14, color: Colors.black54),
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Theme.of(
+                        context,
+                      ).colorScheme.onSurface.withOpacity(0.6),
+                    ),
                   ),
                   const SizedBox(height: 4),
                   Text(
@@ -247,7 +258,6 @@ class _InfoCard extends StatelessWidget {
                     style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
-                      color: Colors.black87,
                     ),
                   ),
                 ],

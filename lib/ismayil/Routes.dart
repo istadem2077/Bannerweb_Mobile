@@ -6,7 +6,11 @@ import 'package:bannerweb_mobile/burak_kerem/ProfilePage_UI.dart';
 import 'package:bannerweb_mobile/burak_kerem/RegistrationPage_UI.dart';
 import 'package:bannerweb_mobile/burak_kerem/SearchPage_UI.dart';
 import 'package:bannerweb_mobile/burak_kerem/StudentsRecords_UI.dart';
+import 'package:bannerweb_mobile/ismayil/FinalExamSchedulePage.dart';
 import 'package:bannerweb_mobile/ismayil/LoginPageUI.dart';
+import 'package:bannerweb_mobile/ismayil/SettingsPage.dart';
+import 'package:bannerweb_mobile/ismayil/StudentHelp.dart';
+import 'package:bannerweb_mobile/sidaboo/FinalExamTablePage.dart';
 import 'package:flutter/material.dart';
 
 class AppRoutes {
@@ -19,9 +23,15 @@ class AppRoutes {
   static const String financialAid = '/financial-aid';
   static const String degreeAudit = '/degree-audit';
   static const String housing = '/housing';
+  static const String studentHelp = '/student-help';
+  static const String courseInfoList = '/course-info-list';
+  static const String courseSections = '/course-sections';
+  static const String finalExamSchedule = '/final-exam-schedule';
+  static const String settings = '/settings';
+  static const String finals = '/finals';
 
   static Map<String, WidgetBuilder> get routes => {
-    login: (context) => const LoginPage(),
+    login: (context) => const LoginScreen(),
     home: (context) => const HomeScreen(),
     search: (context) => const SearchScreen(),
     student: (context) => const StudentScreen(),
@@ -30,5 +40,9 @@ class AppRoutes {
     financialAid: (context) => const FinancialAidScreen(),
     degreeAudit: (context) => const DegreeAuditScreen(),
     housing: (context) => const HousingScreen(),
+    finalExamSchedule: (context) => const FinalExamSchedulePage(),
+    finals: (context) => const FinalExamTablePage(),
+    settings: (context) => const SettingsPage(),
+    studentHelp: (context) => const StudentHelpScreen(),
   };
 }

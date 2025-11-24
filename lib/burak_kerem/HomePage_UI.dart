@@ -1,3 +1,5 @@
+import 'package:bannerweb_mobile/ismayil/Routes.dart';
+import 'package:bannerweb_mobile/ismayil/app_scaffold.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -164,7 +166,7 @@ class HomeScreen extends StatelessWidget {
             // Profile Card
             InkWell(
               onTap: () {
-                Navigator.pushNamed(context, StudentScreen.routeName);
+                Navigator.pushNamed(context, AppRoutes.student);
               },
               borderRadius: BorderRadius.circular(16),
               child: Card(
@@ -247,27 +249,15 @@ class HomeScreen extends StatelessWidget {
                     trailing: const Icon(Icons.chevron_right),
                     onTap: () {
                       if (opt.title == 'Registration') {
-                        Navigator.pushNamed(
-                          context,
-                          RegistrationScreen.routeName,
-                        );
+                        Navigator.pushNamed(context, AppRoutes.registration);
                       } else if (opt.title == 'Student Records') {
-                        Navigator.pushNamed(
-                          context,
-                          StudentRecordsScreen.routeName,
-                        );
+                        Navigator.pushNamed(context, AppRoutes.studentRecords);
                       } else if (opt.title == 'Financial Aid') {
-                        Navigator.pushNamed(
-                          context,
-                          FinancialAidScreen.routeName,
-                        );
+                        Navigator.pushNamed(context, AppRoutes.financialAid);
                       } else if (opt.title == 'Degree Audit & Graduation') {
-                        Navigator.pushNamed(
-                          context,
-                          DegreeAuditScreen.routeName,
-                        );
+                        Navigator.pushNamed(context, AppRoutes.degreeAudit);
                       } else if (opt.title == 'Housing') {
-                        Navigator.pushNamed(context, HousingScreen.routeName);
+                        Navigator.pushNamed(context, AppRoutes.housing);
                       } else {
                         // TODO: navigate to other feature pages
                       }
