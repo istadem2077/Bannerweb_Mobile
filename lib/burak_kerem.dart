@@ -537,7 +537,7 @@ class StudentScreen extends StatelessWidget {
 
             const SizedBox(height: 24),
 
-            // Quick Info Section
+            // Quick Information
             const Text(
               'Quick Information',
               style: TextStyle(
@@ -590,7 +590,7 @@ class StudentScreen extends StatelessWidget {
             ),
             const SizedBox(height: 12),
 
-            // Action Buttons
+            // Action Buttons - First Row
             Row(
               children: [
                 Expanded(
@@ -617,26 +617,40 @@ class StudentScreen extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 12),
+
+            // Action Buttons - Second Row (UPDATED)
             Row(
               children: [
                 Expanded(
                   child: _ActionButton(
-                    icon: Icons.account_balance_wallet,
-                    label: 'Financial Aid',
-                    color: Colors.green,
+                    icon: Icons.event,
+                    label: 'Final Exam Schedule',
+                    color: Colors.red,
                     onTap: () {
-                      Navigator.pushNamed(context, FinancialAidScreen.routeName);
+                      // TODO: Navigate to Final Exam Schedule screen
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Opening Final Exam Schedule...'),
+                          duration: Duration(seconds: 1),
+                        ),
+                      );
                     },
                   ),
                 ),
                 const SizedBox(width: 12),
                 Expanded(
                   child: _ActionButton(
-                    icon: Icons.home,
-                    label: 'Housing',
-                    color: Colors.purple,
+                    icon: Icons.settings,
+                    label: 'Settings',
+                    color: Colors.grey,
                     onTap: () {
-                      Navigator.pushNamed(context, HousingScreen.routeName);
+                      // TODO: Navigate to Settings screen
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Opening Settings...'),
+                          duration: Duration(seconds: 1),
+                        ),
+                      );
                     },
                   ),
                 ),
@@ -905,7 +919,7 @@ class _RegistrationMenuItem extends StatelessWidget {
             const SizedBox(width: 12),
             // Menu option text
             Expanded(
-        child: Text(
+              child: Text(
                 title,
                 style: const TextStyle(
                   fontSize: 16,
