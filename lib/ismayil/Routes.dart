@@ -10,6 +10,8 @@ import 'package:bannerweb_mobile/ismayil/FinalExamSchedulePage.dart';
 import 'package:bannerweb_mobile/ismayil/LoginPageUI.dart';
 import 'package:bannerweb_mobile/ismayil/SettingsPage.dart';
 import 'package:bannerweb_mobile/ismayil/StudentHelp.dart';
+import 'package:bannerweb_mobile/mehlael/CourseListScreen.dart';
+import 'package:bannerweb_mobile/mehlael/DepartmentListScreen.dart';
 import 'package:bannerweb_mobile/sidaboo/FinalExamTablePage.dart';
 import 'package:flutter/material.dart';
 
@@ -29,6 +31,8 @@ class AppRoutes {
   static const String finalExamSchedule = '/final-exam-schedule';
   static const String settings = '/settings';
   static const String finals = '/finals';
+  static const String alscreen = '/alscreen';
+  static const String courses = '/courses';
 
   static Map<String, WidgetBuilder> get routes => {
     login: (context) => const LoginScreen(),
@@ -44,5 +48,7 @@ class AppRoutes {
     finals: (context) => const FinalExamTablePage(),
     settings: (context) => const SettingsPage(),
     studentHelp: (context) => const StudentHelpScreen(),
+    alscreen: (context) => const CourseListScreen(),
+    courses: (context) => const DepartmentListScreen(),
   };
 }

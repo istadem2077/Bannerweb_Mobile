@@ -115,7 +115,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 // Course Information Button
                 OutlinedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, AppRoutes.courseInfoList);
+                    Navigator.pushNamed(context, AppRoutes.courses);
                   },
                   style: OutlinedButton.styleFrom(
                     side: BorderSide(
