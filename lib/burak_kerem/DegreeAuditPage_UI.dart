@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class DegreeAuditScreen extends StatelessWidget {
   static const String routeName = '/degree-audit';
 
@@ -8,7 +10,8 @@ class DegreeAuditScreen extends StatelessWidget {
     final degreeAuditItems = const [
       _DegreeAuditItem(
         title: 'Major Declaration for Undergraduate Student',
-        description: 'Complete your Final Major Declaration, view your all Major Declarations.',
+        description:
+            'Complete your Final Major Declaration, view your all Major Declarations.',
         isRed: false,
       ),
       _DegreeAuditItem(
@@ -142,10 +145,7 @@ class _DegreeAuditItemWidget extends StatelessWidget {
   final _DegreeAuditItem item;
   final VoidCallback onTap;
 
-  const _DegreeAuditItemWidget({
-    required this.item,
-    required this.onTap,
-  });
+  const _DegreeAuditItemWidget({required this.item, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -179,7 +179,9 @@ class _DegreeAuditItemWidget extends StatelessWidget {
                       fontWeight: FontWeight.w500,
                       color: item.isRed ? Colors.red : const Color(0xFF1155CC),
                       letterSpacing: 0.2,
-                      decoration: item.isRed ? TextDecoration.underline : TextDecoration.none,
+                      decoration: item.isRed
+                          ? TextDecoration.underline
+                          : TextDecoration.none,
                     ),
                   ),
                 ),

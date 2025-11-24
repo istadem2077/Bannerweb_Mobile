@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class SearchScreen extends StatefulWidget {
   static const String routeName = '/search';
 
@@ -54,8 +56,10 @@ class _SearchScreenState extends State<SearchScreen> {
                   prefixIcon: Icon(Icons.search),
                   hintText: 'Search',
                   border: InputBorder.none,
-                  contentPadding:
-                      EdgeInsets.symmetric(vertical: 14, horizontal: 8),
+                  contentPadding: EdgeInsets.symmetric(
+                    vertical: 14,
+                    horizontal: 8,
+                  ),
                 ),
               ),
             ),

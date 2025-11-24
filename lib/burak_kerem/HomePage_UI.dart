@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class HomeScreen extends StatelessWidget {
   static const String routeName = '/home';
 
@@ -68,9 +70,21 @@ class HomeScreen extends StatelessWidget {
                       children: [
                         Row(
                           children: [
-                            const Text('•', style: TextStyle(color: Colors.white, fontSize: 8)),
+                            const Text(
+                              '•',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 8,
+                              ),
+                            ),
                             const SizedBox(width: 4),
-                            const Text('•', style: TextStyle(color: Colors.white, fontSize: 8)),
+                            const Text(
+                              '•',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 8,
+                              ),
+                            ),
                             const SizedBox(width: 4),
                             const Text(
                               'Sabancı',
@@ -81,15 +95,33 @@ class HomeScreen extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(width: 4),
-                            const Text('•', style: TextStyle(color: Colors.white, fontSize: 8)),
+                            const Text(
+                              '•',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 8,
+                              ),
+                            ),
                           ],
                         ),
                         const SizedBox(height: 2),
                         Row(
                           children: [
-                            const Text('•', style: TextStyle(color: Colors.white, fontSize: 8)),
+                            const Text(
+                              '•',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 8,
+                              ),
+                            ),
                             const SizedBox(width: 4),
-                            const Text('•', style: TextStyle(color: Colors.white, fontSize: 8)),
+                            const Text(
+                              '•',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 8,
+                              ),
+                            ),
                             const SizedBox(width: 4),
                             const Text(
                               'Üniversitesi',
@@ -100,7 +132,13 @@ class HomeScreen extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(width: 4),
-                            const Text('•', style: TextStyle(color: Colors.white, fontSize: 8)),
+                            const Text(
+                              '•',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 8,
+                              ),
+                            ),
                           ],
                         ),
                       ],
@@ -154,12 +192,9 @@ class HomeScreen extends StatelessWidget {
                             ),
                           ),
                           SizedBox(height: 4),
-                          Text(
-                            '00000000',
-                            style: TextStyle(fontSize: 14),
-                          ),
+                          Text('00000000', style: TextStyle(fontSize: 14)),
                         ],
-                      )
+                      ),
                     ],
                   ),
                 ),
@@ -177,10 +212,7 @@ class HomeScreen extends StatelessWidget {
               ),
               child: const Text(
                 'Information System',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w700,
-                ),
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
               ),
             ),
 
@@ -196,8 +228,10 @@ class HomeScreen extends StatelessWidget {
                   ),
                   elevation: 1,
                   child: ListTile(
-                    contentPadding:
-                        const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                    contentPadding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 12,
+                    ),
                     leading: const Icon(Icons.check_box_outline_blank),
                     title: Text(
                       opt.title,
@@ -213,13 +247,25 @@ class HomeScreen extends StatelessWidget {
                     trailing: const Icon(Icons.chevron_right),
                     onTap: () {
                       if (opt.title == 'Registration') {
-                        Navigator.pushNamed(context, RegistrationScreen.routeName);
+                        Navigator.pushNamed(
+                          context,
+                          RegistrationScreen.routeName,
+                        );
                       } else if (opt.title == 'Student Records') {
-                        Navigator.pushNamed(context, StudentRecordsScreen.routeName);
+                        Navigator.pushNamed(
+                          context,
+                          StudentRecordsScreen.routeName,
+                        );
                       } else if (opt.title == 'Financial Aid') {
-                        Navigator.pushNamed(context, FinancialAidScreen.routeName);
+                        Navigator.pushNamed(
+                          context,
+                          FinancialAidScreen.routeName,
+                        );
                       } else if (opt.title == 'Degree Audit & Graduation') {
-                        Navigator.pushNamed(context, DegreeAuditScreen.routeName);
+                        Navigator.pushNamed(
+                          context,
+                          DegreeAuditScreen.routeName,
+                        );
                       } else if (opt.title == 'Housing') {
                         Navigator.pushNamed(context, HousingScreen.routeName);
                       } else {
@@ -236,9 +282,14 @@ class HomeScreen extends StatelessWidget {
             // Big button: Student Schedule Day & Time
             OutlinedButton(
               style: OutlinedButton.styleFrom(
-                side: BorderSide(color: Theme.of(context).primaryColor, width: 2),
-                padding:
-                    const EdgeInsets.symmetric(vertical: 16, horizontal: 12),
+                side: BorderSide(
+                  color: Theme.of(context).primaryColor,
+                  width: 2,
+                ),
+                padding: const EdgeInsets.symmetric(
+                  vertical: 16,
+                  horizontal: 12,
+                ),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
@@ -248,10 +299,7 @@ class HomeScreen extends StatelessWidget {
               },
               child: const Text(
                 'Student Schedule Day & Time',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                ),
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
               ),
             ),
           ],

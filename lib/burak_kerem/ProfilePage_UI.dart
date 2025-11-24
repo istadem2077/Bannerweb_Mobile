@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class StudentScreen extends StatelessWidget {
   static const String routeName = '/student';
 
@@ -5,7 +7,7 @@ class StudentScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppScaffold(
+    return Scaffold(
       currentIndex: 2,
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
@@ -25,11 +27,7 @@ class StudentScreen extends StatelessWidget {
                     const CircleAvatar(
                       radius: 40,
                       backgroundColor: Color(0xFF1155CC),
-                      child: Icon(
-                        Icons.person,
-                        size: 48,
-                        color: Colors.white,
-                      ),
+                      child: Icon(Icons.person, size: 48, color: Colors.white),
                     ),
                     const SizedBox(height: 16),
                     const Text(
@@ -43,10 +41,7 @@ class StudentScreen extends StatelessWidget {
                     const SizedBox(height: 8),
                     const Text(
                       'Student ID: 00000000',
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.black54,
-                      ),
+                      style: TextStyle(fontSize: 16, color: Colors.black54),
                     ),
                     const SizedBox(height: 12),
                     Container(
@@ -137,7 +132,10 @@ class StudentScreen extends StatelessWidget {
                     label: 'Schedule',
                     color: const Color(0xFF1155CC),
                     onTap: () {
-                      Navigator.pushNamed(context, RegistrationScreen.routeName);
+                      Navigator.pushNamed(
+                        context,
+                        RegistrationScreen.routeName,
+                      );
                     },
                   ),
                 ),
@@ -148,7 +146,10 @@ class StudentScreen extends StatelessWidget {
                     label: 'Grades',
                     color: Colors.orange,
                     onTap: () {
-                      Navigator.pushNamed(context, StudentRecordsScreen.routeName);
+                      Navigator.pushNamed(
+                        context,
+                        StudentRecordsScreen.routeName,
+                      );
                     },
                   ),
                 ),
@@ -218,9 +219,7 @@ class _InfoCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 1,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Row(
@@ -240,10 +239,7 @@ class _InfoCard extends StatelessWidget {
                 children: [
                   Text(
                     title,
-                    style: const TextStyle(
-                      fontSize: 14,
-                      color: Colors.black54,
-                    ),
+                    style: const TextStyle(fontSize: 14, color: Colors.black54),
                   ),
                   const SizedBox(height: 4),
                   Text(

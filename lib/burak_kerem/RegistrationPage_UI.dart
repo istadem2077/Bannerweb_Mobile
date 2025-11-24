@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class RegistrationScreen extends StatelessWidget {
   static const String routeName = '/registration';
 
@@ -120,10 +122,7 @@ class _RegistrationMenuItem extends StatelessWidget {
   final String title;
   final VoidCallback onTap;
 
-  const _RegistrationMenuItem({
-    required this.title,
-    required this.onTap,
-  });
+  const _RegistrationMenuItem({required this.title, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -156,11 +155,7 @@ class _RegistrationMenuItem extends StatelessWidget {
               ),
             ),
             // Chevron icon
-            Icon(
-              Icons.chevron_right,
-              color: Colors.grey.shade600,
-              size: 20,
-            ),
+            Icon(Icons.chevron_right, color: Colors.grey.shade600, size: 20),
           ],
         ),
       ),
