@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class StudentRecordsScreen extends StatelessWidget {
   static const String routeName = '/student-records';
 

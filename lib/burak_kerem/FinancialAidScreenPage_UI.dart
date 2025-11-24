@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class FinancialAidScreen extends StatelessWidget {
   static const String routeName = '/financial-aid';
 
