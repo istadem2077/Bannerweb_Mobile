@@ -1,8 +1,7 @@
+import 'package:bannerweb_mobile/ismayil/app_scaffold.dart';
 import 'package:flutter/material.dart';
 
 class SearchScreen extends StatefulWidget {
-  static const String routeName = '/search';
-
   const SearchScreen({super.key});
 
   @override
@@ -43,7 +42,12 @@ class _SearchScreenState extends State<SearchScreen> {
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                border: Border.all(color: Colors.black87, width: 1.2),
+                border: Border.all(
+                  color: Theme.of(
+                    context,
+                  ).colorScheme.onSurface.withOpacity(0.5),
+                  width: 1.2,
+                ),
               ),
               child: TextField(
                 controller: searchController,
@@ -56,8 +60,10 @@ class _SearchScreenState extends State<SearchScreen> {
                   prefixIcon: Icon(Icons.search),
                   hintText: 'Search',
                   border: InputBorder.none,
-                  contentPadding:
-                      EdgeInsets.symmetric(vertical: 14, horizontal: 8),
+                  contentPadding: EdgeInsets.symmetric(
+                    vertical: 14,
+                    horizontal: 8,
+                  ),
                 ),
               ),
             ),
@@ -73,8 +79,8 @@ class _SearchScreenState extends State<SearchScreen> {
                 return ListTile(
                   title: Text(
                     item,
-                    style: const TextStyle(
-                      color: Color(0xFF1155CC),
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.primary,
                       fontSize: 15,
                       fontWeight: FontWeight.w500,
                     ),

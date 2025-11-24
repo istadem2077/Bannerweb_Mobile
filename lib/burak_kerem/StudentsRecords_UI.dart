@@ -118,10 +118,7 @@ class _StudentRecordsMenuItem extends StatelessWidget {
   final String title;
   final VoidCallback onTap;
 
-  const _StudentRecordsMenuItem({
-    required this.title,
-    required this.onTap,
-  });
+  const _StudentRecordsMenuItem({required this.title, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -154,11 +151,7 @@ class _StudentRecordsMenuItem extends StatelessWidget {
               ),
             ),
             // Chevron icon
-            Icon(
-              Icons.chevron_right,
-              color: Colors.grey.shade600,
-              size: 20,
-            ),
+            Icon(Icons.chevron_right, color: Colors.grey.shade600, size: 20),
           ],
         ),
       ),

@@ -145,10 +145,7 @@ class _DegreeAuditItemWidget extends StatelessWidget {
   final _DegreeAuditItem item;
   final VoidCallback onTap;
 
-  const _DegreeAuditItemWidget({
-    required this.item,
-    required this.onTap,
-  });
+  const _DegreeAuditItemWidget({required this.item, required this.onTap});
 
   @override
   Widget build(BuildContext context) {

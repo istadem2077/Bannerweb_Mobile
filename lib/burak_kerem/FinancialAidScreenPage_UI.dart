@@ -132,10 +132,7 @@ class _FinancialAidSection {
   final String title;
   final String description;
 
-  const _FinancialAidSection({
-    required this.title,
-    required this.description,
-  });
+  const _FinancialAidSection({required this.title, required this.description});
 }
 
 class _FinancialAidSectionWidget extends StatelessWidget {

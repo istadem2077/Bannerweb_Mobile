@@ -1,97 +1,6 @@
+import 'package:bannerweb_mobile/ismayil/Routes.dart';
+import 'package:bannerweb_mobile/ismayil/app_scaffold.dart';
 import 'package:flutter/material.dart';
-
-void main() {
-  runApp(const BannerWebApp());
-}
-
-class BannerWebApp extends StatelessWidget {
-  const BannerWebApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'BannerWeb Mobile',
-      debugShowCheckedModeBanner: false,
-      // named routes
-      initialRoute: HomeScreen.routeName,
-      routes: {
-        HomeScreen.routeName: (_) => const HomeScreen(),
-        SearchScreen.routeName: (_) => const SearchScreen(),
-        StudentScreen.routeName: (_) => const StudentScreen(),
-        RegistrationScreen.routeName: (_) => const RegistrationScreen(),
-        StudentRecordsScreen.routeName: (_) => const StudentRecordsScreen(),
-        FinancialAidScreen.routeName: (_) => const FinancialAidScreen(),
-        DegreeAuditScreen.routeName: (_) => const DegreeAuditScreen(),
-        HousingScreen.routeName: (_) => const HousingScreen(),
-      },
-      theme: ThemeData(
-        primaryColor: const Color(0xFF1155CC),
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xFF1155CC),
-        ),
-        scaffoldBackgroundColor: Colors.white,
-      ),
-    );
-  }
-}
-
-/// ----------------- COMMON WIDGETS -----------------
-
-class AppScaffold extends StatelessWidget {
-  final int currentIndex;
-  final Widget body;
-
-  const AppScaffold({
-    super.key,
-    required this.currentIndex,
-    required this.body,
-  });
-
-  void _onTapNav(BuildContext context, int index) {
-    if (index == currentIndex) return;
-
-    switch (index) {
-      case 0:
-        Navigator.pushReplacementNamed(context, HomeScreen.routeName);
-        break;
-      case 1:
-        Navigator.pushReplacementNamed(context, SearchScreen.routeName);
-        break;
-      case 2:
-        Navigator.pushReplacementNamed(context, StudentScreen.routeName);
-        break;
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(child: body),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: currentIndex,
-        onTap: (i) => _onTapNav(context, i),
-        selectedItemColor: Theme.of(context).primaryColor,
-        unselectedItemColor: Colors.black87,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: 'Search',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person_outline),
-            label: 'Student',
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-/// ----------------- HOME SCREEN -----------------
 
 class HomeScreen extends StatelessWidget {
   static const String routeName = '/home';
@@ -163,9 +72,21 @@ class HomeScreen extends StatelessWidget {
                       children: [
                         Row(
                           children: [
-                            const Text('•', style: TextStyle(color: Colors.white, fontSize: 8)),
+                            const Text(
+                              '•',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 8,
+                              ),
+                            ),
                             const SizedBox(width: 4),
-                            const Text('•', style: TextStyle(color: Colors.white, fontSize: 8)),
+                            const Text(
+                              '•',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 8,
+                              ),
+                            ),
                             const SizedBox(width: 4),
                             const Text(
                               'Sabancı',
@@ -176,15 +97,33 @@ class HomeScreen extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(width: 4),
-                            const Text('•', style: TextStyle(color: Colors.white, fontSize: 8)),
+                            const Text(
+                              '•',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 8,
+                              ),
+                            ),
                           ],
                         ),
                         const SizedBox(height: 2),
                         Row(
                           children: [
-                            const Text('•', style: TextStyle(color: Colors.white, fontSize: 8)),
+                            const Text(
+                              '•',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 8,
+                              ),
+                            ),
                             const SizedBox(width: 4),
-                            const Text('•', style: TextStyle(color: Colors.white, fontSize: 8)),
+                            const Text(
+                              '•',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 8,
+                              ),
+                            ),
                             const SizedBox(width: 4),
                             const Text(
                               'Üniversitesi',
@@ -195,7 +134,13 @@ class HomeScreen extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(width: 4),
-                            const Text('•', style: TextStyle(color: Colors.white, fontSize: 8)),
+                            const Text(
+                              '•',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 8,
+                              ),
+                            ),
                           ],
                         ),
                       ],
@@ -221,7 +166,7 @@ class HomeScreen extends StatelessWidget {
             // Profile Card
             InkWell(
               onTap: () {
-                Navigator.pushNamed(context, StudentScreen.routeName);
+                Navigator.pushNamed(context, AppRoutes.student);
               },
               borderRadius: BorderRadius.circular(16),
               child: Card(
@@ -249,12 +194,9 @@ class HomeScreen extends StatelessWidget {
                             ),
                           ),
                           SizedBox(height: 4),
-                          Text(
-                            '00000000',
-                            style: TextStyle(fontSize: 14),
-                          ),
+                          Text('00000000', style: TextStyle(fontSize: 14)),
                         ],
-                      )
+                      ),
                     ],
                   ),
                 ),
@@ -272,10 +214,7 @@ class HomeScreen extends StatelessWidget {
               ),
               child: const Text(
                 'Information System',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w700,
-                ),
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
               ),
             ),
 
@@ -291,8 +230,10 @@ class HomeScreen extends StatelessWidget {
                   ),
                   elevation: 1,
                   child: ListTile(
-                    contentPadding:
-                        const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                    contentPadding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 12,
+                    ),
                     leading: const Icon(Icons.check_box_outline_blank),
                     title: Text(
                       opt.title,
@@ -308,15 +249,15 @@ class HomeScreen extends StatelessWidget {
                     trailing: const Icon(Icons.chevron_right),
                     onTap: () {
                       if (opt.title == 'Registration') {
-                        Navigator.pushNamed(context, RegistrationScreen.routeName);
+                        Navigator.pushNamed(context, AppRoutes.registration);
                       } else if (opt.title == 'Student Records') {
-                        Navigator.pushNamed(context, StudentRecordsScreen.routeName);
+                        Navigator.pushNamed(context, AppRoutes.studentRecords);
                       } else if (opt.title == 'Financial Aid') {
-                        Navigator.pushNamed(context, FinancialAidScreen.routeName);
+                        Navigator.pushNamed(context, AppRoutes.financialAid);
                       } else if (opt.title == 'Degree Audit & Graduation') {
-                        Navigator.pushNamed(context, DegreeAuditScreen.routeName);
+                        Navigator.pushNamed(context, AppRoutes.degreeAudit);
                       } else if (opt.title == 'Housing') {
-                        Navigator.pushNamed(context, HousingScreen.routeName);
+                        Navigator.pushNamed(context, AppRoutes.housing);
                       } else {
                         // TODO: navigate to other feature pages
                       }
@@ -331,9 +272,14 @@ class HomeScreen extends StatelessWidget {
             // Big button: Student Schedule Day & Time
             OutlinedButton(
               style: OutlinedButton.styleFrom(
-                side: BorderSide(color: Theme.of(context).primaryColor, width: 2),
-                padding:
-                    const EdgeInsets.symmetric(vertical: 16, horizontal: 12),
+                side: BorderSide(
+                  color: Theme.of(context).primaryColor,
+                  width: 2,
+                ),
+                padding: const EdgeInsets.symmetric(
+                  vertical: 16,
+                  horizontal: 12,
+                ),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
@@ -343,10 +289,7 @@ class HomeScreen extends StatelessWidget {
               },
               child: const Text(
                 'Student Schedule Day & Time',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                ),
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
               ),
             ),
           ],
