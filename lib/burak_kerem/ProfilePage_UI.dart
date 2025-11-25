@@ -1,4 +1,7 @@
+import 'package:bannerweb_mobile/burak_kerem/HomePage_UI.dart';
 import 'package:flutter/material.dart';
+import './../didar/FinalSchedulePage.dart'; 
+import './../didar/settingsPage.dart';
 
 class StudentScreen extends StatelessWidget {
   static const String routeName = '/student';

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import '../burak_kerem/ProfilePage_UI.dart'; 
+import 'ProfileHeaderCard.dart';
 
 class FinalScheduleScreen extends StatelessWidget {
   static const String routeName = '/final-schedule';
@@ -9,160 +8,143 @@ class FinalScheduleScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final studentData = Provider.of<StudentData>(context);
-    final Color textColor = studentData.isDarkModeEnabled ? Colors.white : Colors.black;
-    final Color subtitleColor = studentData.isDarkModeEnabled ? Colors.white70 : Colors.black54;
-
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: textColor),
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () => Navigator.pop(context),
         ),
-        title: null,
+        title: const Text(
+          'Final Exam Schedule',
+          style: TextStyle(color: Colors.black),
+        ),
+        backgroundColor: Colors.white,
+        elevation: 1,
       ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            // Reusable Profile Header Card
+            const ProfileHeaderCard(),
 
-              // Header
-              Padding(
-                padding: const EdgeInsets.fromLTRB(20, 8, 20, 0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Final Exam Schedule',
-                      style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: textColor),
-                    ),
-                    const SizedBox(height: 12),
-                    Container(
-                      height: 4,
-                      decoration: BoxDecoration(
-                        color: const Color(0xFFFFA500),
-                        borderRadius: BorderRadius.circular(2),
-                      ),
-                    ),
-                  ],
+            const SizedBox(height: 24),
+
+            // Final Exam List Header
+            const Text(
+              'Your Final Exams',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: Colors.black87,
+              ),
+            ),
+            const SizedBox(height: 16),
+
+            // Static Final Exam Cards
+            const _FinalExamCard(
+              courseName: 'Mathematics I',
+              professor: 'Prof. John Doe',
+              time: '09:00 - 11:00',
+              date: '2024-12-10',
+              room: 'Room 101',
+            ),
+            const _FinalExamCard(
+              courseName: 'Computer Science',
+              professor: 'Prof. Jane Smith',
+              time: '13:00 - 15:00',
+              date: '2024-12-12',
+              room: 'Room 202',
+            ),
+            const _FinalExamCard(
+              courseName: 'Physics I',
+              professor: 'Prof. Albert Einstein',
+              time: '10:00 - 12:00',
+              date: '2024-12-14',
+              room: 'Room 303',
+            ),
+            const _FinalExamCard(
+              courseName: 'Chemistry',
+              professor: 'Prof. Marie Curie',
+              time: '14:00 - 16:00',
+              date: '2024-12-15',
+              room: 'Room 404',
+            ),
+            const _FinalExamCard(
+              courseName: 'English Literature',
+              professor: 'Prof. William Shakespeare',
+              time: '09:00 - 11:00',
+              date: '2024-12-16',
+              room: 'Room 505',
+            ),
+            const _FinalExamCard(
+              courseName: 'History',
+              professor: 'Prof. Howard Zinn',
+              time: '13:00 - 15:00',
+              date: '2024-12-18',
+              room: 'Room 606',
+            ),
+
+            const SizedBox(height: 32),
+
+            // Return Button
+            InkWell(
+              onTap: () => Navigator.pop(context),
+              child: Text(
+                'Return to Menu',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Theme.of(context).primaryColor,
                 ),
               ),
-
-              const SizedBox(height: 24),
-
-              // Student Info Card
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Card(
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                  elevation: 1,
-                  child: Padding(
-                    padding: const EdgeInsets.all(16),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(studentData.studentName,
-                          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: textColor),
-                        ),
-                        const SizedBox(height: 4),
-                        Text(studentData.studentId,
-                            style: TextStyle(fontSize: 14, color: subtitleColor)),
-                        const SizedBox(height: 4),
-                        Text(studentData.status,
-                            style: TextStyle(fontSize: 14, color: subtitleColor)),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-
-              const SizedBox(height: 24),
-
-              // Final Exam List
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Your Final Exams',
-                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: textColor)),
-                    const SizedBox(height: 16),
-
-                    ...studentData.finalScheduleCourses.map(
-                          (course) => _FinalScheduleCourseItem(course: course),
-                    ),
-                  ],
-                ),
-              ),
-
-              const SizedBox(height: 32),
-
-              Container(
-                height: 1,
-                color: studentData.isDarkModeEnabled ? Colors.white70 : Colors.black87,
-                margin: const EdgeInsets.symmetric(horizontal: 20),
-              ),
-
-              const SizedBox(height: 16),
-
-              Padding(
-                padding: const EdgeInsets.fromLTRB(20, 8, 20, 32),
-                child: InkWell(
-                  onTap: () => Navigator.pop(context),
-                  child: Text(
-                    'Return to Menu',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Theme.of(context).primaryColor,
-                    ),
-                  ),
-                ),
-              )
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
   }
 }
 
-class _FinalScheduleCourseItem extends StatelessWidget {
-  final FinalScheduleCourse course;
+// Single Final Exam Card
+class _FinalExamCard extends StatelessWidget {
+  final String courseName;
+  final String professor;
+  final String time;
+  final String date;
+  final String room;
 
-  const _FinalScheduleCourseItem({required this.course});
+  const _FinalExamCard({
+    required this.courseName,
+    required this.professor,
+    required this.time,
+    required this.date,
+    required this.room,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final studentData = Provider.of<StudentData>(context);
-    final Color textColor = studentData.isDarkModeEnabled ? Colors.white : Colors.black;
-    final Color subtitleColor = studentData.isDarkModeEnabled ? Colors.white70 : Colors.black54;
-
     return Card(
       margin: const EdgeInsets.only(bottom: 12),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       elevation: 1,
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Row(
           children: [
-
             // Left side
             Expanded(
               flex: 3,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(course.courseName,
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: Theme.of(context).primaryColor,
-                      )),
-                  const SizedBox(height: 8),
-                  Text('Time: ${course.time}', style: TextStyle(color: textColor)),
-                  Text('Date: ${course.date}', style: TextStyle(color: textColor)),
+                  Text(courseName,
+                      style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                  const SizedBox(height: 4),
+                  Text('Time: $time'),
+                  Text('Date: $date'),
                 ],
               ),
             ),
@@ -173,10 +155,9 @@ class _FinalScheduleCourseItem extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Text(course.professor, style: TextStyle(color: subtitleColor)),
-                  const SizedBox(height: 8),
-                  Text(course.room,
-                      style: TextStyle(fontWeight: FontWeight.w600, color: textColor)),
+                  Text(professor),
+                  const SizedBox(height: 4),
+                  Text(room, style: const TextStyle(fontWeight: FontWeight.w600)),
                 ],
               ),
             ),
@@ -186,4 +167,3 @@ class _FinalScheduleCourseItem extends StatelessWidget {
     );
   }
 }
-

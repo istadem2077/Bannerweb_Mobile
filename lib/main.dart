@@ -146,3 +146,10 @@ class ButtonScreen extends StatelessWidget {
     );
   }
 }
+// import 'package:flutter/material.dart';
+// import 'package:bannerweb_mobile/burak_kerem/HomePage_UI.dart'; // Your existing HomePage_UI.dart
+
+// void main() {
+//   runApp(const BannerWebApp());
+// }
+
