@@ -20,7 +20,6 @@ class DepartmentListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       body: SafeArea(
         child: Column(
           children: [
@@ -30,25 +29,15 @@ class DepartmentListScreen extends StatelessWidget {
               child: TextField(
                 decoration: InputDecoration(
                   hintText: 'Search',
-                  hintStyle: const TextStyle(color: Colors.black, fontSize: 18),
-                  prefixIcon: const Icon(
-                    Icons.search,
-                    color: Colors.black,
-                    size: 28,
-                  ),
+                  hintStyle: const TextStyle(fontSize: 18),
+                  prefixIcon: const Icon(Icons.search, size: 28),
                   contentPadding: const EdgeInsets.symmetric(vertical: 15.0),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(
-                      color: Colors.black,
-                      width: 1.5,
-                    ),
+                    borderSide: const BorderSide(width: 1.5),
                     borderRadius: BorderRadius.circular(4.0),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(
-                      color: Colors.black,
-                      width: 2.0,
-                    ),
+                    borderSide: const BorderSide(width: 2.0),
                     borderRadius: BorderRadius.circular(4.0),
                   ),
                 ),
@@ -76,7 +65,6 @@ class DepartmentListScreen extends StatelessWidget {
                         _departmentData[index],
                         style: const TextStyle(
                           fontSize: 16,
-                          color: Colors.black,
                           fontWeight: FontWeight.w400,
                         ),
                       ),
@@ -93,7 +81,7 @@ class DepartmentListScreen extends StatelessWidget {
               },
               child: Container(
                 padding: const EdgeInsets.only(top: 10, bottom: 20),
-                child: const Icon(Icons.home, size: 40, color: Colors.black),
+                child: const Icon(Icons.home, size: 40),
               ),
             ),
           ],

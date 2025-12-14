@@ -28,10 +28,10 @@ class DegreeAuditScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () => Navigator.pop(context),
         ),
         title: null,
@@ -53,7 +53,6 @@ class DegreeAuditScreen extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 28,
                         fontWeight: FontWeight.bold,
-                        color: Colors.black,
                         letterSpacing: 0.5,
                       ),
                     ),
@@ -91,34 +90,6 @@ class DegreeAuditScreen extends StatelessWidget {
                       },
                     );
                   }).toList(),
-                ),
-              ),
-
-              const SizedBox(height: 32),
-
-              // Dark blue separator line
-              Container(
-                height: 1,
-                color: const Color(0xFF00008B), // Dark blue color
-                margin: const EdgeInsets.symmetric(horizontal: 20),
-              ),
-
-              const SizedBox(height: 16),
-
-              // Return to Menu footer
-              Padding(
-                padding: const EdgeInsets.fromLTRB(20, 8, 20, 32),
-                child: InkWell(
-                  onTap: () => Navigator.pop(context),
-                  child: const Text(
-                    'Return to Menu',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF1155CC),
-                      letterSpacing: 0.3,
-                    ),
-                  ),
                 ),
               ),
             ],
@@ -197,7 +168,6 @@ class _DegreeAuditItemWidget extends StatelessWidget {
                   style: const TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.normal,
-                    color: Colors.black87,
                     height: 1.5,
                   ),
                 ),

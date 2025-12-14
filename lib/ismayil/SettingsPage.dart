@@ -1,7 +1,11 @@
+import 'package:bannerweb_mobile/didar/ProfileHeaderCard.dart'; // 1. Fixed Import
 import 'package:bannerweb_mobile/ismayil/Routes.dart';
 import 'package:bannerweb_mobile/ismayil/app_scaffold.dart';
-import 'package:bannerweb_mobile/main.dart';
+import 'package:bannerweb_mobile/providers/ismayil/auth_provider.dart';
+import 'package:bannerweb_mobile/providers/ismayil/theme_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -15,56 +19,68 @@ class _SettingsPageState extends State<SettingsPage> {
   int _selectedLanguage = 0; // 0 for English, 1 for Türkçe
 
   @override
+  void initState() {
+    super.initState();
+    _loadThemeSettings(); // 2. Load settings when page opens
+  }
+
+  // Helper to load the saved state
+  Future<void> _loadThemeSettings() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      // Default to false if no key exists
+      _isDarkMode = prefs.getBool('isDarkMode') ?? false;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return AppScaffold(
-      currentIndex: 2, // Assuming it's part of the student section
+      currentIndex: 2,
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const SizedBox(height: 20),
-            const Text(
-              '[STUDENT NAME]',
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 4),
-            Text(
-              '00000000',
-              style: TextStyle(
-                fontSize: 16,
-                color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
-              ),
-            ),
+            const ProfileHeaderCard(),
             const SizedBox(height: 40),
-            _buildSectionHeader('Language'),
-            const SizedBox(height: 16),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+            Column(
               children: [
-                _buildLanguageButton(0, 'English'),
-                const SizedBox(width: 20),
-                _buildLanguageButton(1, 'Türkçe'),
+                _buildSectionHeader('Language'),
+                const SizedBox(height: 16),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _buildLanguageButton(0, 'English'),
+                    const SizedBox(width: 20),
+                    _buildLanguageButton(1, 'Türkçe'),
+                  ],
+                ),
               ],
             ),
             const SizedBox(height: 30),
-            _buildSectionHeader('Dark Mode'),
-            const SizedBox(height: 10),
-            Switch(
-              value: _isDarkMode,
-              onChanged: (value) {
-                setState(() {
-                  _isDarkMode = value;
-                });
-                BannerWebApp.of(
-                  context,
-                )?.changeTheme(value ? ThemeMode.dark : ThemeMode.light);
-              },
-              activeColor: Colors.red,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                _buildSectionHeader('Dark Mode'),
+                Switch(
+                  value: Provider.of<ThemeProvider>(context).isDarkMode,
+                  onChanged: (value) {
+                    // This updates the provider, which updates main.dart, which updates the app
+                    Provider.of<ThemeProvider>(
+                      context,
+                      listen: false,
+                    ).toggleTheme(value);
+                  },
+                  activeColor: Colors.red,
+                ),
+              ],
             ),
             const Spacer(),
             OutlinedButton(
               onPressed: () {
+                Provider.of<AuthProvider>(context, listen: false).logout();
                 Navigator.pushNamedAndRemoveUntil(
                   context,
                   AppRoutes.login,

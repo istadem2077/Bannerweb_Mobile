@@ -29,13 +29,26 @@ class AppScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       body: SafeArea(child: body),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
         onTap: (i) => _onTapNav(context, i),
-        selectedItemColor: Theme.of(context).primaryColor,
-        unselectedItemColor: Theme.of(context).unselectedWidgetColor,
+        // --- Theming Updates ---
+        // Sets a dark background for dark mode, white for light mode
+        backgroundColor: isDark ? const Color(0xFF1E1E1E) : Colors.white,
+
+        // Adjusts selected color for better visibility on dark backgrounds
+        selectedItemColor: isDark
+            ? Colors.blueAccent
+            : Theme.of(context).primaryColor,
+
+        // Adjusts unselected icons to be visible against the dark background
+        unselectedItemColor: isDark ? Colors.grey[400] : Colors.grey,
+
+        // Ensures the background color applies correctly
+        type: BottomNavigationBarType.fixed,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home_outlined),

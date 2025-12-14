@@ -1,4 +1,4 @@
-import 'package:bannerweb_mobile/burak_kerem/app_scaffold.dart';
+import 'package:bannerweb_mobile/ismayil/app_scaffold.dart';
 import 'package:flutter/material.dart';
 
 class FinalExamSchedulePage extends StatelessWidget {

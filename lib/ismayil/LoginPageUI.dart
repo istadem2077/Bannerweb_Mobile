@@ -1,5 +1,7 @@
 import 'package:bannerweb_mobile/ismayil/Routes.dart';
+import 'package:bannerweb_mobile/providers/ismayil/auth_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 /// A login page with a username and password field, a login button,
 /// and two placeholder buttons.
@@ -14,6 +16,27 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
+
+  void _handleLogin() async {
+    if (_formKey.currentState!.validate()) {
+      final authProvider = Provider.of<AuthProvider>(context, listen: false);
+
+      // Call login from Provider
+      String? error = await authProvider.login(
+        _usernameController.text.trim(),
+        _passwordController.text.trim(),
+      );
+
+      if (error != null) {
+        // Show error message
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(error), backgroundColor: Colors.red),
+        );
+      } else {
+        // Success! Main wrapper handles navigation to Home automatically
+      }
+    }
+  }
 
   @override
   void dispose() {
@@ -91,11 +114,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(height: 30),
                 // Login Button
                 ElevatedButton(
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      Navigator.pushReplacementNamed(context, AppRoutes.home);
-                    }
-                  },
+                  onPressed: _handleLogin,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Theme.of(context).colorScheme.primary,
                     padding: const EdgeInsets.symmetric(
@@ -111,6 +130,29 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                 ),
+
+                const SizedBox(height: 30),
+
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, AppRoutes.register);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Theme.of(context).colorScheme.primary,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 80,
+                      vertical: 15,
+                    ),
+                  ),
+                  child: Text(
+                    'Register',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Theme.of(context).colorScheme.onPrimary,
+                    ),
+                  ),
+                ),
+
                 const SizedBox(height: 40),
                 // Course Information Button
                 OutlinedButton(

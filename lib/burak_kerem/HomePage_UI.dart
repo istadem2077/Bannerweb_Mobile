@@ -2,6 +2,8 @@ import 'package:bannerweb_mobile/ismayil/Routes.dart';
 import 'package:bannerweb_mobile/ismayil/app_scaffold.dart';
 import 'package:flutter/material.dart';
 
+import '../didar/ProfileHeaderCard.dart';
+
 class HomeScreen extends StatelessWidget {
   static const String routeName = '/home';
 
@@ -44,7 +46,9 @@ class HomeScreen extends StatelessWidget {
               padding: const EdgeInsets.all(16),
               margin: const EdgeInsets.only(bottom: 16),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Theme.of(context).brightness == Brightness.dark
+                    ? Colors.grey.shade900
+                    : Colors.grey.shade200,
                 borderRadius: BorderRadius.circular(12),
                 boxShadow: [
                   BoxShadow(
@@ -169,47 +173,19 @@ class HomeScreen extends StatelessWidget {
                 Navigator.pushNamed(context, AppRoutes.student);
               },
               borderRadius: BorderRadius.circular(16),
-              child: Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                elevation: 2,
-                child: Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Row(
-                    children: [
-                      const CircleAvatar(
-                        radius: 28,
-                        child: Icon(Icons.person_outline, size: 32),
-                      ),
-                      const SizedBox(width: 16),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
-                          Text(
-                            '[STUDENT NAME]',
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          SizedBox(height: 4),
-                          Text('00000000', style: TextStyle(fontSize: 14)),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+              child: ProfileHeaderCard(), // Card
             ),
-
             const SizedBox(height: 16),
 
             // Information System header bar
             Container(
               padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
               decoration: BoxDecoration(
-                color: Colors.grey.shade200,
+                // CHANGED: Dynamically check brightness.
+                // Uses dark grey (shade800) for dark mode, light grey (shade200) for light mode.
+                color: Theme.of(context).brightness == Brightness.dark
+                    ? Colors.grey.shade900
+                    : Colors.grey.shade200,
                 borderRadius: BorderRadius.circular(8),
               ),
               child: const Text(

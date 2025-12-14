@@ -1,56 +1,49 @@
+import 'package:bannerweb_mobile/burak_kerem/HomePage_UI.dart';
+import 'package:bannerweb_mobile/firebase_options.dart';
+import 'package:bannerweb_mobile/ismayil/LoginPageUI.dart';
 import 'package:bannerweb_mobile/ismayil/Routes.dart';
+import 'package:bannerweb_mobile/providers/ismayil/auth_provider.dart';
+import 'package:bannerweb_mobile/providers/ismayil/theme_provider.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-  runApp(const BannerWebApp());
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => AuthProvider()),
+        ChangeNotifierProvider(create: (_) => ThemeProvider()),
+      ],
+      child: const BannerWebApp(),
+    ),
+  );
 }
 
-class BannerWebApp extends StatefulWidget {
+class BannerWebApp extends StatelessWidget {
   const BannerWebApp({super.key});
 
   @override
-  State<BannerWebApp> createState() => _BannerWebAppState();
-
-  static _BannerWebAppState? of(BuildContext context) =>
-      context.findAncestorStateOfType<_BannerWebAppState>();
-}
-
-class _BannerWebAppState extends State<BannerWebApp> {
-  ThemeMode _themeMode = ThemeMode.light;
-
-  void changeTheme(ThemeMode themeMode) {
-    setState(() {
-      _themeMode = themeMode;
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
+    // Listen to the theme provider
+    final themeProvider = Provider.of<ThemeProvider>(context);
+
     return MaterialApp(
       title: 'BannerWeb Mobile',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        brightness: Brightness.light,
-        primaryColor: const Color(0xFF1155CC),
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xFF1155CC),
-          brightness: Brightness.light,
-        ),
-        scaffoldBackgroundColor: Colors.white,
+      themeMode: themeProvider.themeMode,
+      theme: ThemeData.light(),
+      darkTheme: ThemeData.dark(),
+
+      home: Consumer<AuthProvider>(
+        builder: (context, auth, _) {
+          return auth.isAuthenticated
+              ? const HomeScreen()
+              : const LoginScreen();
+        },
       ),
-      darkTheme: ThemeData(
-        brightness: Brightness.dark,
-        primaryColor: const Color(0xFF1155CC),
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xFF1155CC),
-          brightness: Brightness.dark,
-        ),
-      ),
-      themeMode: _themeMode,
-      initialRoute: AppRoutes.login,
       routes: AppRoutes.routes,
     );
   }

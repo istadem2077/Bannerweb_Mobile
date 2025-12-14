@@ -1,3 +1,4 @@
+import 'package:bannerweb_mobile/Ismayil/SettingsPage.dart';
 import 'package:bannerweb_mobile/burak_kerem/DegreeAuditPage_UI.dart';
 import 'package:bannerweb_mobile/burak_kerem/FinancialAidScreenPage_UI.dart';
 import 'package:bannerweb_mobile/burak_kerem/HomePage_UI.dart';
@@ -6,13 +7,13 @@ import 'package:bannerweb_mobile/burak_kerem/ProfilePage_UI.dart';
 import 'package:bannerweb_mobile/burak_kerem/RegistrationPage_UI.dart';
 import 'package:bannerweb_mobile/burak_kerem/SearchPage_UI.dart';
 import 'package:bannerweb_mobile/burak_kerem/StudentsRecords_UI.dart';
-import 'package:bannerweb_mobile/ismayil/FinalExamSchedulePage.dart';
-import 'package:bannerweb_mobile/ismayil/LoginPageUI.dart';
-import 'package:bannerweb_mobile/ismayil/SettingsPage.dart';
+import 'package:bannerweb_mobile/didar/FinalSchedulePage.dart';
 import 'package:bannerweb_mobile/ismayil/StudentHelp.dart';
+import 'package:bannerweb_mobile/ismayil/sign_up_page.dart';
 import 'package:bannerweb_mobile/mehlael/CourseListScreen.dart';
 import 'package:bannerweb_mobile/mehlael/DepartmentListScreen.dart';
 import 'package:bannerweb_mobile/sidaboo/FinalExamTablePage.dart';
+import 'package:bannerweb_mobile/sidaboo/courseinfoex.dart';
 import 'package:flutter/material.dart';
 
 class AppRoutes {
@@ -33,9 +34,11 @@ class AppRoutes {
   static const String finals = '/finals';
   static const String alscreen = '/alscreen';
   static const String courses = '/courses';
+  static const String courseinfoex = '/courseinfoex';
+  static const String register = '/register';
 
   static Map<String, WidgetBuilder> get routes => {
-    login: (context) => const LoginScreen(),
+    // login: (context) => const LoginScreen(),
     home: (context) => const HomeScreen(),
     search: (context) => const SearchScreen(),
     student: (context) => const StudentScreen(),
@@ -44,11 +47,13 @@ class AppRoutes {
     financialAid: (context) => const FinancialAidScreen(),
     degreeAudit: (context) => const DegreeAuditScreen(),
     housing: (context) => const HousingScreen(),
-    finalExamSchedule: (context) => const FinalExamSchedulePage(),
+    finalExamSchedule: (context) => const FinalScheduleScreen(),
     finals: (context) => const FinalExamTablePage(),
     settings: (context) => const SettingsPage(),
     studentHelp: (context) => const StudentHelpScreen(),
     alscreen: (context) => const CourseListScreen(),
     courses: (context) => const DepartmentListScreen(),
+    courseinfoex: (context) => CourseRegExPage(),
+    register: (context) => const SignUpPage(),
   };
 }
