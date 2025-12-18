@@ -14,6 +14,8 @@ import 'package:bannerweb_mobile/mehlael/CourseListScreen.dart';
 import 'package:bannerweb_mobile/mehlael/DepartmentListScreen.dart';
 import 'package:bannerweb_mobile/sidaboo/FinalExamTablePage.dart';
 import 'package:bannerweb_mobile/sidaboo/courseinfoex.dart';
+import 'package:bannerweb_mobile/sidaboo/FinalExamSchedulePage.dart';
+
 import 'package:flutter/material.dart';
 
 class AppRoutes {
@@ -47,7 +49,7 @@ class AppRoutes {
     financialAid: (context) => const FinancialAidScreen(),
     degreeAudit: (context) => const DegreeAuditScreen(),
     housing: (context) => const HousingScreen(),
-    finalExamSchedule: (context) => const FinalScheduleScreen(),
+    finalExamSchedule: (context) => const FinalExamSchedulePage(),
     finals: (context) => const FinalExamTablePage(),
     settings: (context) => const SettingsPage(),
     studentHelp: (context) => const StudentHelpScreen(),
