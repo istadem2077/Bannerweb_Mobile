@@ -36,11 +36,6 @@ class HomeScreen extends StatelessWidget {
         title: 'Course Offerings & Schedule',
         subtitle: 'View course offerings and schedule.',
       ),
-      //--test exam schedule------- edited by siddhique
-      const _HomeOption(
-        title: 'Final Exam Schedule',
-        subtitle: 'View dates and time for exam',
-      ),
     ];
 
     return AppScaffold(
@@ -245,11 +240,6 @@ class HomeScreen extends StatelessWidget {
                         Navigator.pushNamed(context, AppRoutes.housing);
                       } else if (opt.title == 'Course Offerings & Schedule') {
                         Navigator.pushNamed(context, AppRoutes.courses);
-                      } else if (opt.title == 'Final Exam Schedule') {
-                        Navigator.pushNamed(
-                          context,
-                          AppRoutes.finalExamSchedule,
-                        );
                       } else {
                         // TODO: navigate to other feature pages
                       }
