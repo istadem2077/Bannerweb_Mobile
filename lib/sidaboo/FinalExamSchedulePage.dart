@@ -191,10 +191,7 @@ class _FinalExamSchedulePageState extends State<FinalExamSchedulePage> {
                   }
 
                   final data = snapshot.data!.docs;
-                  final filtered = data.where((doc) {
-                    final map = doc.data() as Map<String, dynamic>;
-                    return map['createdBy'] == currentUid;
-                  }).toList();
+                  final filtered = data;
 
                   if (filtered.isEmpty) {
                     return const Center(child: Text('No exams scheduled.'));
