@@ -65,4 +65,5 @@ class DefaultFirebaseOptions {
     storageBucket: 'bannerweb-mobile.firebasestorage.app',
     iosBundleId: 'com.example.bannerwebMobile',
   );
+
 }
