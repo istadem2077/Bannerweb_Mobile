@@ -1,4 +1,6 @@
+import 'package:bannerweb_mobile/providers/ismayil/auth_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../ismayil/Routes.dart';
 
@@ -9,6 +11,7 @@ class RegistrationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final auth = context.watch<AuthProvider>();
     final registrationOptions = const [
       'Select Term',
       'Add/Drop Classes',
@@ -36,13 +39,11 @@ class RegistrationScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Header Section
               Padding(
                 padding: const EdgeInsets.fromLTRB(20, 8, 20, 0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Registration Title
                     const Text(
                       'Registration',
                       style: TextStyle(
@@ -52,12 +53,27 @@ class RegistrationScreen extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 12),
-                    // Yellow horizontal line
                     Container(
                       height: 4,
                       decoration: BoxDecoration(
                         color: const Color(0xFFFFD700),
                         borderRadius: BorderRadius.circular(2),
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    Text(
+                      auth.fullName,
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      'Student ID: ${auth.studentId}',
+                      style: const TextStyle(
+                        fontSize: 14,
+                        color: Colors.black54,
                       ),
                     ),
                   ],
@@ -66,7 +82,6 @@ class RegistrationScreen extends StatelessWidget {
 
               const SizedBox(height: 24),
 
-              // Menu Options List
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
@@ -102,7 +117,6 @@ class _RegistrationMenuItem extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 12),
         child: Row(
           children: [
-            // ">" prefix symbol
             const Text(
               '>',
               style: TextStyle(
@@ -112,7 +126,6 @@ class _RegistrationMenuItem extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 12),
-            // Menu option text
             Expanded(
               child: Text(
                 title,
@@ -124,7 +137,6 @@ class _RegistrationMenuItem extends StatelessWidget {
                 ),
               ),
             ),
-            // Chevron icon
             Icon(Icons.chevron_right, color: Colors.grey.shade600, size: 20),
           ],
         ),
