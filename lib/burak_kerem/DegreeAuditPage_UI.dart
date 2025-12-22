@@ -1,4 +1,6 @@
+import 'package:bannerweb_mobile/providers/ismayil/auth_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class DegreeAuditScreen extends StatelessWidget {
   static const String routeName = '/degree-audit';
@@ -7,6 +9,7 @@ class DegreeAuditScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final auth = context.watch<AuthProvider>();
     final degreeAuditItems = const [
       _DegreeAuditItem(
         title: 'Major Declaration for Undergraduate Student',
@@ -41,13 +44,11 @@ class DegreeAuditScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Header Section
               Padding(
                 padding: const EdgeInsets.fromLTRB(20, 8, 20, 0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Degree Audit and Graduation Title
                     const Text(
                       'Degree Audit and Graduation',
                       style: TextStyle(
@@ -57,13 +58,25 @@ class DegreeAuditScreen extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 12),
-                    // Yellow-green horizontal line
                     Container(
                       height: 4,
                       decoration: BoxDecoration(
-                        color: const Color(0xFFADFF2F), // Yellow-green color
+                        color: const Color(0xFFADFF2F),
                         borderRadius: BorderRadius.circular(2),
                       ),
+                    ),
+                    const SizedBox(height: 12),
+                    Text(
+                      auth.fullName,
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      'Student ID: ${auth.studentId}',
+                      style: const TextStyle(fontSize: 14),
                     ),
                   ],
                 ),
@@ -71,7 +84,6 @@ class DegreeAuditScreen extends StatelessWidget {
 
               const SizedBox(height: 24),
 
-              // Menu Items List
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
@@ -80,7 +92,6 @@ class DegreeAuditScreen extends StatelessWidget {
                     return _DegreeAuditItemWidget(
                       item: item,
                       onTap: () {
-                        // TODO: Navigate to specific degree audit feature
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text('Selected: ${item.title}'),
@@ -127,21 +138,18 @@ class _DegreeAuditItemWidget extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Item title with ">" prefix
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Orange-brown ">" prefix
                 const Text(
                   '>',
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w600,
-                    color: Color(0xFFCD853F), // Orange-brown color
+                    color: Color(0xFFCD853F),
                   ),
                 ),
                 const SizedBox(width: 8),
-                // Item title - blue or red
                 Expanded(
                   child: Text(
                     item.title,
@@ -159,7 +167,6 @@ class _DegreeAuditItemWidget extends StatelessWidget {
                 ),
               ],
             ),
-            // Description text if available
             if (item.description != null) ...[
               const SizedBox(height: 8),
               Padding(

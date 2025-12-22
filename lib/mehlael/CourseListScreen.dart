@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'CourseData.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import 'CourseData.dart';
 
 class CourseListScreen extends StatefulWidget {
   const CourseListScreen({super.key});
@@ -111,10 +112,7 @@ class _CourseListScreenState extends State<CourseListScreen> {
                     controller: _searchController,
                     decoration: InputDecoration(
                       hintText: 'Search',
-                      hintStyle: const TextStyle(
-                        color: Colors.black,
-                        fontSize: 18,
-                      ),
+                      hintStyle: const TextStyle(fontSize: 18),
                       prefixIcon: const Icon(Icons.search, size: 28),
                       contentPadding: const EdgeInsets.symmetric(
                         vertical: 15.0,

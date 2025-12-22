@@ -147,10 +147,45 @@
 //   }
 // }
 import 'package:flutter/material.dart';
-import 'package:bannerweb_mobile/burak_kerem/HomePage_UI.dart'; // Your existing HomePage_UI.dart
+import 'package:provider/provider.dart';
 
-void main() {
-  // runApp(const BannerWebApp());
-  runApp(const HomeScreen());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => AuthProvider()),
+        ChangeNotifierProvider(create: (_) => ThemeProvider()),
+      ],
+      child: const BannerWebApp(),
+    ),
+  );
 }
 
+class BannerWebApp extends StatelessWidget {
+  const BannerWebApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    // Listen to the theme provider
+    final themeProvider = Provider.of<ThemeProvider>(context);
+
+    return MaterialApp(
+      title: 'BannerWeb Mobile',
+      themeMode: themeProvider.themeMode,
+      theme: ThemeData.light(),
+      darkTheme: ThemeData.dark(),
+
+      home: Consumer<AuthProvider>(
+        builder: (context, auth, _) {
+          return auth.isAuthenticated
+              ? const HomeScreen()
+              : const LoginScreen();
+        },
+      ),
+      routes: AppRoutes.routes,
+    );
+  }
+}

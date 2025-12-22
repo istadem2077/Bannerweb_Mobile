@@ -1,7 +1,10 @@
+import 'package:bannerweb_mobile/didar/ProfileHeaderCard.dart';
 import 'package:bannerweb_mobile/ismayil/app_scaffold.dart';
-import 'package:bannerweb_mobile/services/sidaboo/database_service.dart'; // Make sure this path is correct
+import 'package:bannerweb_mobile/providers/ismayil/auth_provider.dart';
+import 'package:bannerweb_mobile/services/sidaboo/database_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class FinalExamSchedulePage extends StatefulWidget {
   const FinalExamSchedulePage({super.key});
@@ -13,14 +16,23 @@ class FinalExamSchedulePage extends StatefulWidget {
 class _FinalExamSchedulePageState extends State<FinalExamSchedulePage> {
   final DatabaseService _dbService = DatabaseService();
 
-  // Show dialog for Create and Update
   void _showExamDialog({DocumentSnapshot? doc}) {
     final isEditing = doc != null;
-    final courseController = TextEditingController(text: isEditing ? doc['courseName'] : '');
-    final timeController = TextEditingController(text: isEditing ? doc['time'] : '');
-    final dateController = TextEditingController(text: isEditing ? doc['date'] : '');
-    final instructorController = TextEditingController(text: isEditing ? doc['instructor'] : '');
-    final locationController = TextEditingController(text: isEditing ? doc['location'] : '');
+    final courseController = TextEditingController(
+      text: isEditing ? doc['courseName'] : '',
+    );
+    final timeController = TextEditingController(
+      text: isEditing ? doc['time'] : '',
+    );
+    final dateController = TextEditingController(
+      text: isEditing ? doc['date'] : '',
+    );
+    final instructorController = TextEditingController(
+      text: isEditing ? doc['instructor'] : '',
+    );
+    final locationController = TextEditingController(
+      text: isEditing ? doc['location'] : '',
+    );
 
     showDialog(
       context: context,
@@ -30,11 +42,32 @@ class _FinalExamSchedulePageState extends State<FinalExamSchedulePage> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              TextField(controller: courseController, decoration: const InputDecoration(labelText: 'Course Name (e.g., CS 310)')),
-              TextField(controller: timeController, decoration: const InputDecoration(labelText: 'Time (e.g., 15:00)')),
-              TextField(controller: dateController, decoration: const InputDecoration(labelText: 'Date (e.g., 3.12.2026)')),
-              TextField(controller: instructorController, decoration: const InputDecoration(labelText: 'Instructor')),
-              TextField(controller: locationController, decoration: const InputDecoration(labelText: 'Location')),
+              TextField(
+                controller: courseController,
+                decoration: const InputDecoration(
+                  labelText: 'Course Name (e.g., CS 310)',
+                ),
+              ),
+              TextField(
+                controller: timeController,
+                decoration: const InputDecoration(
+                  labelText: 'Time (e.g., 15:00)',
+                ),
+              ),
+              TextField(
+                controller: dateController,
+                decoration: const InputDecoration(
+                  labelText: 'Date (e.g., 3.12.2026)',
+                ),
+              ),
+              TextField(
+                controller: instructorController,
+                decoration: const InputDecoration(labelText: 'Instructor'),
+              ),
+              TextField(
+                controller: locationController,
+                decoration: const InputDecoration(labelText: 'Location'),
+              ),
             ],
           ),
         ),
@@ -44,26 +77,32 @@ class _FinalExamSchedulePageState extends State<FinalExamSchedulePage> {
             child: const Text('Cancel'),
           ),
           ElevatedButton(
-            onPressed: () {
-              if (isEditing) {
-                _dbService.updateExam(
-                  docId: doc.id,
-                  courseName: courseController.text,
-                  time: timeController.text,
-                  date: dateController.text,
-                  instructor: instructorController.text,
-                  location: locationController.text,
-                );
-              } else {
-                _dbService.addExam(
-                  courseName: courseController.text,
-                  time: timeController.text,
-                  date: dateController.text,
-                  instructor: instructorController.text,
-                  location: locationController.text,
-                );
+            onPressed: () async {
+              final navigator = Navigator.of(context);
+              final messenger = ScaffoldMessenger.of(context);
+              try {
+                if (isEditing) {
+                  await _dbService.updateExam(
+                    docId: doc.id,
+                    courseName: courseController.text,
+                    time: timeController.text,
+                    date: dateController.text,
+                    instructor: instructorController.text,
+                    location: locationController.text,
+                  );
+                } else {
+                  await _dbService.addExam(
+                    courseName: courseController.text,
+                    time: timeController.text,
+                    date: dateController.text,
+                    instructor: instructorController.text,
+                    location: locationController.text,
+                  );
+                }
+                navigator.pop();
+              } catch (e) {
+                messenger.showSnackBar(SnackBar(content: Text(e.toString())));
               }
-              Navigator.pop(context);
             },
             child: Text(isEditing ? 'Save' : 'Add'),
           ),
@@ -72,39 +111,52 @@ class _FinalExamSchedulePageState extends State<FinalExamSchedulePage> {
     );
   }
 
+  void _confirmDelete(String id) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Delete Exam'),
+        content: const Text('Are you sure you want to delete this exam?'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () async {
+              Navigator.pop(context);
+              try {
+                await _dbService.deleteExam(id);
+              } catch (e) {
+                ScaffoldMessenger.of(
+                  context,
+                ).showSnackBar(SnackBar(content: Text(e.toString())));
+              }
+            },
+            child: const Text('Delete'),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    final auth = context.watch<AuthProvider>();
+    final currentUid = auth.user?.uid;
+    final name = auth.fullName.isEmpty ? 'Student' : auth.fullName;
+    final studentId = auth.studentId.isEmpty ? '00000000' : auth.studentId;
+
     return AppScaffold(
       currentIndex: 2,
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            // Static Header
-            Card(
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-              elevation: 3,
-              child: Padding(
-                padding: const EdgeInsets.all(20),
-                child: Column(
-                  children: [
-                    const CircleAvatar(
-                      radius: 40,
-                      backgroundColor: Color(0xFF1155CC),
-                      child: Icon(Icons.person, size: 48, color: Colors.white),
-                    ),
-                    const SizedBox(height: 16),
-                    const Text('[STUDENT NAME]', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
-                    const SizedBox(height: 8),
-                    const Text('Student ID: 00000000', style: TextStyle(fontSize: 16, color: Colors.black54)),
-                  ],
-                ),
-              ),
-            ),
+            ProfileHeaderCard(),
             const SizedBox(height: 30),
 
-            // Header Row with Add Button
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -113,26 +165,38 @@ class _FinalExamSchedulePageState extends State<FinalExamSchedulePage> {
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
                 ),
                 IconButton(
-                  icon: const Icon(Icons.add_circle, color: Colors.blue, size: 30),
+                  icon: const Icon(
+                    Icons.add_circle,
+                    color: Colors.blue,
+                    size: 30,
+                  ),
                   onPressed: () => _showExamDialog(),
                 ),
               ],
             ),
             const SizedBox(height: 10),
 
-            // Real-time List
             Expanded(
               child: StreamBuilder<QuerySnapshot>(
                 stream: _dbService.getExamsStream(),
                 builder: (context, snapshot) {
-                  if (snapshot.hasError) return const Center(child: Text('Error loading exams'));
+                  if (snapshot.hasError)
+                    return const Center(child: Text('Error loading exams'));
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return const Center(child: CircularProgressIndicator());
                   }
 
-                  final data = snapshot.data!.docs;
+                  if (currentUid == null) {
+                    return const Center(child: Text('No exams available.'));
+                  }
 
-                  if (data.isEmpty) {
+                  final data = snapshot.data!.docs;
+                  final filtered = data.where((doc) {
+                    final map = doc.data() as Map<String, dynamic>;
+                    return map['createdBy'] == currentUid;
+                  }).toList();
+
+                  if (filtered.isEmpty) {
                     return const Center(child: Text('No exams scheduled.'));
                   }
 
@@ -142,13 +206,13 @@ class _FinalExamSchedulePageState extends State<FinalExamSchedulePage> {
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: ListView.builder(
-                      itemCount: data.length,
+                      itemCount: filtered.length,
                       itemBuilder: (context, index) {
-                        final doc = data[index];
+                        final doc = filtered[index];
                         return _ExamCard(
                           doc: doc,
                           onEdit: () => _showExamDialog(doc: doc),
-                          onDelete: () => _dbService.deleteExam(doc.id),
+                          onDelete: () => _confirmDelete(doc.id),
                         );
                       },
                     ),
@@ -193,7 +257,10 @@ class _ExamCard extends StatelessWidget {
                 children: [
                   Text(
                     data['courseName'] ?? 'Unknown',
-                    style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    style: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   const SizedBox(height: 4),
                   Text('Time: ${data['time'] ?? '-'}'),
@@ -211,8 +278,14 @@ class _ExamCard extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    IconButton(icon: const Icon(Icons.edit, color: Colors.orange), onPressed: onEdit),
-                    IconButton(icon: const Icon(Icons.delete, color: Colors.red), onPressed: onDelete),
+                    IconButton(
+                      icon: const Icon(Icons.edit, color: Colors.orange),
+                      onPressed: onEdit,
+                    ),
+                    IconButton(
+                      icon: const Icon(Icons.delete, color: Colors.red),
+                      onPressed: onDelete,
+                    ),
                   ],
                 ),
               ],
