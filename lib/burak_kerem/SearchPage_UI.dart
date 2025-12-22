@@ -1,5 +1,7 @@
 import 'package:bannerweb_mobile/ismayil/app_scaffold.dart';
+import 'package:bannerweb_mobile/providers/ismayil/auth_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -27,6 +29,7 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final auth = context.watch<AuthProvider>();
     final filtered = _allItems
         .where((e) => e.toLowerCase().contains(_query.toLowerCase()))
         .toList();
@@ -36,7 +39,29 @@ class _SearchScreenState extends State<SearchScreen> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          // Search bar
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  auth.fullName,
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  'Student ID: ${auth.studentId}',
+                  style: const TextStyle(
+                    fontSize: 14,
+                    color: Colors.black54,
+                  ),
+                ),
+              ],
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.all(16),
             child: Container(
@@ -69,7 +94,6 @@ class _SearchScreenState extends State<SearchScreen> {
             ),
           ),
 
-          // List of options
           Expanded(
             child: ListView.separated(
               itemCount: filtered.length,
@@ -85,10 +109,8 @@ class _SearchScreenState extends State<SearchScreen> {
                       fontWeight: FontWeight.w500,
                     ),
                   ),
-                  trailing: const Icon(Icons.chevron_right),
-                  onTap: () {
-                    // TODO: navigate to selected feature
-                  },
+                trailing: const Icon(Icons.chevron_right),
+                onTap: () {},
                 );
               },
             ),

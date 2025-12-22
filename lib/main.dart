@@ -28,7 +28,6 @@ class BannerWebApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Listen to the theme provider
     final themeProvider = Provider.of<ThemeProvider>(context);
 
     return MaterialApp(
@@ -45,6 +44,9 @@ class BannerWebApp extends StatelessWidget {
         },
       ),
       routes: AppRoutes.routes,
+      onUnknownRoute: (settings) {
+        return MaterialPageRoute(builder: (_) => const SizedBox());
+      },
     );
   }
 }
