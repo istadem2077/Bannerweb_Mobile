@@ -1,3 +1,4 @@
+import 'package:bannerweb_mobile/didar/ProfileHeaderCard.dart';
 import 'package:bannerweb_mobile/ismayil/app_scaffold.dart';
 import 'package:bannerweb_mobile/services/sidaboo/database_service.dart'; // Make sure this path is correct
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -16,11 +17,21 @@ class _FinalExamSchedulePageState extends State<FinalExamSchedulePage> {
   // Show dialog for Create and Update
   void _showExamDialog({DocumentSnapshot? doc}) {
     final isEditing = doc != null;
-    final courseController = TextEditingController(text: isEditing ? doc['courseName'] : '');
-    final timeController = TextEditingController(text: isEditing ? doc['time'] : '');
-    final dateController = TextEditingController(text: isEditing ? doc['date'] : '');
-    final instructorController = TextEditingController(text: isEditing ? doc['instructor'] : '');
-    final locationController = TextEditingController(text: isEditing ? doc['location'] : '');
+    final courseController = TextEditingController(
+      text: isEditing ? doc['courseName'] : '',
+    );
+    final timeController = TextEditingController(
+      text: isEditing ? doc['time'] : '',
+    );
+    final dateController = TextEditingController(
+      text: isEditing ? doc['date'] : '',
+    );
+    final instructorController = TextEditingController(
+      text: isEditing ? doc['instructor'] : '',
+    );
+    final locationController = TextEditingController(
+      text: isEditing ? doc['location'] : '',
+    );
 
     showDialog(
       context: context,
@@ -30,11 +41,32 @@ class _FinalExamSchedulePageState extends State<FinalExamSchedulePage> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              TextField(controller: courseController, decoration: const InputDecoration(labelText: 'Course Name (e.g., CS 310)')),
-              TextField(controller: timeController, decoration: const InputDecoration(labelText: 'Time (e.g., 15:00)')),
-              TextField(controller: dateController, decoration: const InputDecoration(labelText: 'Date (e.g., 3.12.2026)')),
-              TextField(controller: instructorController, decoration: const InputDecoration(labelText: 'Instructor')),
-              TextField(controller: locationController, decoration: const InputDecoration(labelText: 'Location')),
+              TextField(
+                controller: courseController,
+                decoration: const InputDecoration(
+                  labelText: 'Course Name (e.g., CS 310)',
+                ),
+              ),
+              TextField(
+                controller: timeController,
+                decoration: const InputDecoration(
+                  labelText: 'Time (e.g., 15:00)',
+                ),
+              ),
+              TextField(
+                controller: dateController,
+                decoration: const InputDecoration(
+                  labelText: 'Date (e.g., 3.12.2026)',
+                ),
+              ),
+              TextField(
+                controller: instructorController,
+                decoration: const InputDecoration(labelText: 'Instructor'),
+              ),
+              TextField(
+                controller: locationController,
+                decoration: const InputDecoration(labelText: 'Location'),
+              ),
             ],
           ),
         ),
@@ -79,29 +111,9 @@ class _FinalExamSchedulePageState extends State<FinalExamSchedulePage> {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            // Static Header
-            Card(
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-              elevation: 3,
-              child: Padding(
-                padding: const EdgeInsets.all(20),
-                child: Column(
-                  children: [
-                    const CircleAvatar(
-                      radius: 40,
-                      backgroundColor: Color(0xFF1155CC),
-                      child: Icon(Icons.person, size: 48, color: Colors.white),
-                    ),
-                    const SizedBox(height: 16),
-                    const Text('[STUDENT NAME]', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
-                    const SizedBox(height: 8),
-                    const Text('Student ID: 00000000', style: TextStyle(fontSize: 16, color: Colors.black54)),
-                  ],
-                ),
-              ),
-            ),
+            ProfileHeaderCard(),
             const SizedBox(height: 30),
 
             // Header Row with Add Button
@@ -113,7 +125,11 @@ class _FinalExamSchedulePageState extends State<FinalExamSchedulePage> {
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
                 ),
                 IconButton(
-                  icon: const Icon(Icons.add_circle, color: Colors.blue, size: 30),
+                  icon: const Icon(
+                    Icons.add_circle,
+                    color: Colors.blue,
+                    size: 30,
+                  ),
                   onPressed: () => _showExamDialog(),
                 ),
               ],
@@ -125,7 +141,8 @@ class _FinalExamSchedulePageState extends State<FinalExamSchedulePage> {
               child: StreamBuilder<QuerySnapshot>(
                 stream: _dbService.getExamsStream(),
                 builder: (context, snapshot) {
-                  if (snapshot.hasError) return const Center(child: Text('Error loading exams'));
+                  if (snapshot.hasError)
+                    return const Center(child: Text('Error loading exams'));
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return const Center(child: CircularProgressIndicator());
                   }
@@ -193,7 +210,10 @@ class _ExamCard extends StatelessWidget {
                 children: [
                   Text(
                     data['courseName'] ?? 'Unknown',
-                    style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    style: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   const SizedBox(height: 4),
                   Text('Time: ${data['time'] ?? '-'}'),
@@ -211,8 +231,14 @@ class _ExamCard extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    IconButton(icon: const Icon(Icons.edit, color: Colors.orange), onPressed: onEdit),
-                    IconButton(icon: const Icon(Icons.delete, color: Colors.red), onPressed: onDelete),
+                    IconButton(
+                      icon: const Icon(Icons.edit, color: Colors.orange),
+                      onPressed: onEdit,
+                    ),
+                    IconButton(
+                      icon: const Icon(Icons.delete, color: Colors.red),
+                      onPressed: onDelete,
+                    ),
                   ],
                 ),
               ],
