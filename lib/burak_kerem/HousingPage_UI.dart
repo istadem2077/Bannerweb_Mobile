@@ -9,10 +9,10 @@ class HousingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () => Navigator.pop(context),
         ),
         title: null,
@@ -34,7 +34,6 @@ class HousingScreen extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 28,
                         fontWeight: FontWeight.bold,
-                        color: Colors.black,
                         letterSpacing: 0.5,
                       ),
                     ),
@@ -109,31 +108,6 @@ class HousingScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                  ),
-                ),
-              ),
-
-              const SizedBox(height: 32),
-
-              // Dark blue separator line
-              Container(
-                height: 1,
-                color: const Color(0xFF00008B), // Dark blue color
-                margin: const EdgeInsets.symmetric(horizontal: 20),
-              ),
-
-              const SizedBox(height: 16),
-
-              // Release version footer
-              Padding(
-                padding: const EdgeInsets.fromLTRB(20, 8, 20, 32),
-                child: const Text(
-                  'RELEASE: 8.9.1',
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black87,
-                    letterSpacing: 0.3,
                   ),
                 ),
               ),

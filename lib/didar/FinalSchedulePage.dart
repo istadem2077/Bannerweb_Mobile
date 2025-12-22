@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
 import 'ProfileHeaderCard.dart';
 
 class FinalScheduleScreen extends StatelessWidget {
@@ -11,6 +15,7 @@ class FinalScheduleScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
+<<<<<<< HEAD
           icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () => Navigator.pop(context),
         ),
@@ -19,6 +24,12 @@ class FinalScheduleScreen extends StatelessWidget {
           style: TextStyle(color: Colors.black),
         ),
         backgroundColor: Colors.white,
+=======
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () => Navigator.pop(context),
+        ),
+        title: const Text('Final Exam Schedule'),
+>>>>>>> origin/master
         elevation: 1,
       ),
       body: SingleChildScrollView(
@@ -34,11 +45,15 @@ class FinalScheduleScreen extends StatelessWidget {
             // Final Exam List Header
             const Text(
               'Your Final Exams',
+<<<<<<< HEAD
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
                 color: Colors.black87,
               ),
+=======
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+>>>>>>> origin/master
             ),
             const SizedBox(height: 16),
 
@@ -85,6 +100,7 @@ class FinalScheduleScreen extends StatelessWidget {
               date: '2024-12-18',
               room: 'Room 606',
             ),
+<<<<<<< HEAD
 
             const SizedBox(height: 32),
 
@@ -100,6 +116,8 @@ class FinalScheduleScreen extends StatelessWidget {
                 ),
               ),
             ),
+=======
+>>>>>>> origin/master
           ],
         ),
       ),
@@ -140,8 +158,18 @@ class _FinalExamCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+<<<<<<< HEAD
                   Text(courseName,
                       style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+=======
+                  Text(
+                    courseName,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+>>>>>>> origin/master
                   const SizedBox(height: 4),
                   Text('Time: $time'),
                   Text('Date: $date'),
@@ -157,7 +185,14 @@ class _FinalExamCard extends StatelessWidget {
                 children: [
                   Text(professor),
                   const SizedBox(height: 4),
+<<<<<<< HEAD
                   Text(room, style: const TextStyle(fontWeight: FontWeight.w600)),
+=======
+                  Text(
+                    room,
+                    style: const TextStyle(fontWeight: FontWeight.w600),
+                  ),
+>>>>>>> origin/master
                 ],
               ),
             ),

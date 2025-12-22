@@ -17,10 +17,10 @@ class StudentRecordsScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () => Navigator.pop(context),
         ),
         title: null,
@@ -42,7 +42,6 @@ class StudentRecordsScreen extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 28,
                         fontWeight: FontWeight.bold,
-                        color: Colors.black,
                         letterSpacing: 0.5,
                       ),
                     ),
@@ -81,31 +80,6 @@ class StudentRecordsScreen extends StatelessWidget {
                   }).toList(),
                 ),
               ),
-
-              const SizedBox(height: 32),
-
-              // Separator line
-              Container(
-                height: 1,
-                color: Colors.black87,
-                margin: const EdgeInsets.symmetric(horizontal: 20),
-              ),
-
-              const SizedBox(height: 16),
-
-              // Release version footer
-              Padding(
-                padding: const EdgeInsets.fromLTRB(20, 8, 20, 32),
-                child: const Text(
-                  'RELEASE: 8.9.1',
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black87,
-                    letterSpacing: 0.3,
-                  ),
-                ),
-              ),
             ],
           ),
         ),
@@ -118,10 +92,7 @@ class _StudentRecordsMenuItem extends StatelessWidget {
   final String title;
   final VoidCallback onTap;
 
-  const _StudentRecordsMenuItem({
-    required this.title,
-    required this.onTap,
-  });
+  const _StudentRecordsMenuItem({required this.title, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -154,11 +125,7 @@ class _StudentRecordsMenuItem extends StatelessWidget {
               ),
             ),
             // Chevron icon
-            Icon(
-              Icons.chevron_right,
-              color: Colors.grey.shade600,
-              size: 20,
-            ),
+            Icon(Icons.chevron_right, color: Colors.grey.shade600, size: 20),
           ],
         ),
       ),

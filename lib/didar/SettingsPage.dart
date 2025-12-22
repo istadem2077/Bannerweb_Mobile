@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
 import 'ProfileHeaderCard.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -14,10 +18,14 @@ class SettingsScreen extends StatelessWidget {
           icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () => Navigator.pop(context),
         ),
+<<<<<<< HEAD
         title: const Text(
           'Settings',
           style: TextStyle(color: Colors.black),
         ),
+=======
+        title: const Text('Settings', style: TextStyle(color: Colors.black)),
+>>>>>>> origin/master
         backgroundColor: Colors.white,
         elevation: 1,
       ),
@@ -34,7 +42,15 @@ class SettingsScreen extends StatelessWidget {
             // Language Selection
             const Text(
               'Language',
+<<<<<<< HEAD
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black87),
+=======
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: Colors.black87,
+              ),
+>>>>>>> origin/master
             ),
             const SizedBox(height: 12),
             const _LanguageSelector(),
@@ -44,10 +60,21 @@ class SettingsScreen extends StatelessWidget {
             // Dark Mode Toggle (static)
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+<<<<<<< HEAD
               children: const [
                 Text(
                   'Dark Mode',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black87),
+=======
+              children: [
+                Text(
+                  'Dark Mode',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black87,
+                  ),
+>>>>>>> origin/master
                 ),
                 Icon(Icons.dark_mode, color: Colors.grey),
               ],
@@ -58,9 +85,15 @@ class SettingsScreen extends StatelessWidget {
             // Logout Button
             OutlinedButton(
               onPressed: () {
+<<<<<<< HEAD
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(content: Text('Logging out...')),
                 );
+=======
+                ScaffoldMessenger.of(
+                  context,
+                ).showSnackBar(const SnackBar(content: Text('Logging out...')));
+>>>>>>> origin/master
               },
               style: OutlinedButton.styleFrom(
                 side: const BorderSide(color: Colors.red, width: 2),
@@ -68,7 +101,14 @@ class SettingsScreen extends StatelessWidget {
               ),
               child: const Text(
                 'Logout',
+<<<<<<< HEAD
                 style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
+=======
+                style: TextStyle(
+                  color: Colors.red,
+                  fontWeight: FontWeight.bold,
+                ),
+>>>>>>> origin/master
               ),
             ),
           ],
@@ -91,12 +131,20 @@ class _LanguageSelector extends StatelessWidget {
             alignment: Alignment.center,
             decoration: BoxDecoration(
               color: Theme.of(context).primaryColor,
+<<<<<<< HEAD
               borderRadius: const BorderRadius.horizontal(left: Radius.circular(10)),
             ),
             child: const Text(
               "English",
               style: TextStyle(color: Colors.white),
             ),
+=======
+              borderRadius: const BorderRadius.horizontal(
+                left: Radius.circular(10),
+              ),
+            ),
+            child: const Text("English", style: TextStyle(color: Colors.white)),
+>>>>>>> origin/master
           ),
         ),
         Expanded(
@@ -105,12 +153,20 @@ class _LanguageSelector extends StatelessWidget {
             alignment: Alignment.center,
             decoration: BoxDecoration(
               color: Colors.grey.shade300,
+<<<<<<< HEAD
               borderRadius: const BorderRadius.horizontal(right: Radius.circular(10)),
             ),
             child: const Text(
               "Türkçe",
               style: TextStyle(color: Colors.black),
             ),
+=======
+              borderRadius: const BorderRadius.horizontal(
+                right: Radius.circular(10),
+              ),
+            ),
+            child: const Text("Türkçe", style: TextStyle(color: Colors.black)),
+>>>>>>> origin/master
           ),
         ),
       ],

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import 'package:bannerweb_mobile/didar/FinalSchedulePage.dart';
 import 'package:bannerweb_mobile/didar/SettingsPage.dart';
 import 'package:flutter/material.dart';
@@ -97,6 +98,13 @@ class AppScaffold extends StatelessWidget {
 }
 
 /// ----------------- HOME SCREEN -----------------
+=======
+import 'package:bannerweb_mobile/ismayil/Routes.dart';
+import 'package:bannerweb_mobile/ismayil/app_scaffold.dart';
+import 'package:flutter/material.dart';
+
+import '../didar/ProfileHeaderCard.dart';
+>>>>>>> origin/master
 
 class HomeScreen extends StatelessWidget {
   static const String routeName = '/home';
@@ -126,6 +134,15 @@ class HomeScreen extends StatelessWidget {
         title: 'Degree Audit & Graduation',
         subtitle: 'Degree audit and graduation progress.',
       ),
+      const _HomeOption(
+        title: 'Course Offerings & Schedule',
+        subtitle: 'View course offerings and schedule.',
+      ),
+      //--test exam schedule------- edited by siddhique
+      const _HomeOption(
+        title: 'Final Exam Schedule',
+        subtitle: 'View dates and time for exam',
+      ),
     ];
 
     return AppScaffold(
@@ -140,7 +157,9 @@ class HomeScreen extends StatelessWidget {
               padding: const EdgeInsets.all(16),
               margin: const EdgeInsets.only(bottom: 16),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Theme.of(context).brightness == Brightness.dark
+                    ? Colors.grey.shade900
+                    : Colors.grey.shade200,
                 borderRadius: BorderRadius.circular(12),
                 boxShadow: [
                   BoxShadow(
@@ -168,9 +187,21 @@ class HomeScreen extends StatelessWidget {
                       children: [
                         Row(
                           children: [
-                            const Text('•', style: TextStyle(color: Colors.white, fontSize: 8)),
+                            const Text(
+                              '•',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 8,
+                              ),
+                            ),
                             const SizedBox(width: 4),
-                            const Text('•', style: TextStyle(color: Colors.white, fontSize: 8)),
+                            const Text(
+                              '•',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 8,
+                              ),
+                            ),
                             const SizedBox(width: 4),
                             const Text(
                               'Sabancı',
@@ -181,15 +212,33 @@ class HomeScreen extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(width: 4),
-                            const Text('•', style: TextStyle(color: Colors.white, fontSize: 8)),
+                            const Text(
+                              '•',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 8,
+                              ),
+                            ),
                           ],
                         ),
                         const SizedBox(height: 2),
                         Row(
                           children: [
-                            const Text('•', style: TextStyle(color: Colors.white, fontSize: 8)),
+                            const Text(
+                              '•',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 8,
+                              ),
+                            ),
                             const SizedBox(width: 4),
-                            const Text('•', style: TextStyle(color: Colors.white, fontSize: 8)),
+                            const Text(
+                              '•',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 8,
+                              ),
+                            ),
                             const SizedBox(width: 4),
                             const Text(
                               'Üniversitesi',
@@ -200,7 +249,13 @@ class HomeScreen extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(width: 4),
-                            const Text('•', style: TextStyle(color: Colors.white, fontSize: 8)),
+                            const Text(
+                              '•',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 8,
+                              ),
+                            ),
                           ],
                         ),
                       ],
@@ -226,61 +281,27 @@ class HomeScreen extends StatelessWidget {
             // Profile Card
             InkWell(
               onTap: () {
-                Navigator.pushNamed(context, StudentScreen.routeName);
+                Navigator.pushNamed(context, AppRoutes.student);
               },
               borderRadius: BorderRadius.circular(16),
-              child: Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                elevation: 2,
-                child: Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Row(
-                    children: [
-                      const CircleAvatar(
-                        radius: 28,
-                        child: Icon(Icons.person_outline, size: 32),
-                      ),
-                      const SizedBox(width: 16),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
-                          Text(
-                            '[STUDENT NAME]',
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          SizedBox(height: 4),
-                          Text(
-                            '00000000',
-                            style: TextStyle(fontSize: 14),
-                          ),
-                        ],
-                      )
-                    ],
-                  ),
-                ),
-              ),
+              child: ProfileHeaderCard(), // Card
             ),
-
             const SizedBox(height: 16),
 
             // Information System header bar
             Container(
               padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
               decoration: BoxDecoration(
-                color: Colors.grey.shade200,
+                // CHANGED: Dynamically check brightness.
+                // Uses dark grey (shade800) for dark mode, light grey (shade200) for light mode.
+                color: Theme.of(context).brightness == Brightness.dark
+                    ? Colors.grey.shade900
+                    : Colors.grey.shade200,
                 borderRadius: BorderRadius.circular(8),
               ),
               child: const Text(
                 'Information System',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w700,
-                ),
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
               ),
             ),
 
@@ -296,8 +317,10 @@ class HomeScreen extends StatelessWidget {
                   ),
                   elevation: 1,
                   child: ListTile(
-                    contentPadding:
-                        const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                    contentPadding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 12,
+                    ),
                     leading: const Icon(Icons.check_box_outline_blank),
                     title: Text(
                       opt.title,
@@ -313,15 +336,22 @@ class HomeScreen extends StatelessWidget {
                     trailing: const Icon(Icons.chevron_right),
                     onTap: () {
                       if (opt.title == 'Registration') {
-                        Navigator.pushNamed(context, RegistrationScreen.routeName);
+                        Navigator.pushNamed(context, AppRoutes.registration);
                       } else if (opt.title == 'Student Records') {
-                        Navigator.pushNamed(context, StudentRecordsScreen.routeName);
+                        Navigator.pushNamed(context, AppRoutes.studentRecords);
                       } else if (opt.title == 'Financial Aid') {
-                        Navigator.pushNamed(context, FinancialAidScreen.routeName);
+                        Navigator.pushNamed(context, AppRoutes.financialAid);
                       } else if (opt.title == 'Degree Audit & Graduation') {
-                        Navigator.pushNamed(context, DegreeAuditScreen.routeName);
+                        Navigator.pushNamed(context, AppRoutes.degreeAudit);
                       } else if (opt.title == 'Housing') {
-                        Navigator.pushNamed(context, HousingScreen.routeName);
+                        Navigator.pushNamed(context, AppRoutes.housing);
+                      } else if (opt.title == 'Course Offerings & Schedule') {
+                        Navigator.pushNamed(context, AppRoutes.courses);
+                      } else if (opt.title == 'Final Exam Schedule') {
+                        Navigator.pushNamed(
+                          context,
+                          AppRoutes.finalExamSchedule,
+                        );
                       } else {
                         // TODO: navigate to other feature pages
                       }
@@ -336,9 +366,14 @@ class HomeScreen extends StatelessWidget {
             // Big button: Student Schedule Day & Time
             OutlinedButton(
               style: OutlinedButton.styleFrom(
-                side: BorderSide(color: Theme.of(context).primaryColor, width: 2),
-                padding:
-                    const EdgeInsets.symmetric(vertical: 16, horizontal: 12),
+                side: BorderSide(
+                  color: Theme.of(context).primaryColor,
+                  width: 2,
+                ),
+                padding: const EdgeInsets.symmetric(
+                  vertical: 16,
+                  horizontal: 12,
+                ),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
@@ -348,10 +383,7 @@ class HomeScreen extends StatelessWidget {
               },
               child: const Text(
                 'Student Schedule Day & Time',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                ),
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
               ),
             ),
           ],
