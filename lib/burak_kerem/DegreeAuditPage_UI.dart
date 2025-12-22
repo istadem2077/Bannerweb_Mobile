@@ -76,10 +76,7 @@ class DegreeAuditScreen extends StatelessWidget {
                     const SizedBox(height: 4),
                     Text(
                       'Student ID: ${auth.studentId}',
-                      style: const TextStyle(
-                        fontSize: 14,
-                        color: Colors.black54,
-                      ),
+                      style: const TextStyle(fontSize: 14),
                     ),
                   ],
                 ),

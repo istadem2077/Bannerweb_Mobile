@@ -1,3 +1,4 @@
+import 'package:bannerweb_mobile/didar/ProfileHeaderCard.dart';
 import 'package:bannerweb_mobile/ismayil/app_scaffold.dart';
 import 'package:bannerweb_mobile/providers/ismayil/auth_provider.dart';
 import 'package:bannerweb_mobile/services/sidaboo/database_service.dart';
@@ -151,42 +152,9 @@ class _FinalExamSchedulePageState extends State<FinalExamSchedulePage> {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16),
-              ),
-              elevation: 3,
-              child: Padding(
-                padding: const EdgeInsets.all(20),
-                child: Column(
-                  children: [
-                    const CircleAvatar(
-                      radius: 40,
-                      backgroundColor: Color(0xFF1155CC),
-                      child: Icon(Icons.person, size: 48, color: Colors.white),
-                    ),
-                    const SizedBox(height: 16),
-                    Text(
-                      name,
-                      style: const TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      'Student ID: $studentId',
-                      style: const TextStyle(
-                        fontSize: 16,
-                        color: Colors.black54,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
+            ProfileHeaderCard(),
             const SizedBox(height: 30),
 
             Row(

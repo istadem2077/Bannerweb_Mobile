@@ -54,10 +54,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 const SizedBox(height: 4),
                 Text(
                   'Student ID: ${auth.studentId}',
-                  style: const TextStyle(
-                    fontSize: 14,
-                    color: Colors.black54,
-                  ),
+                  style: const TextStyle(fontSize: 14),
                 ),
               ],
             ),
@@ -109,8 +106,8 @@ class _SearchScreenState extends State<SearchScreen> {
                       fontWeight: FontWeight.w500,
                     ),
                   ),
-                trailing: const Icon(Icons.chevron_right),
-                onTap: () {},
+                  trailing: const Icon(Icons.chevron_right),
+                  onTap: () {},
                 );
               },
             ),
