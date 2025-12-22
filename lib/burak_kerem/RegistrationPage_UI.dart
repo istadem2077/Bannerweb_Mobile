@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 
-<<<<<<< HEAD
-=======
 import '../ismayil/Routes.dart';
 
->>>>>>> origin/master
 class RegistrationScreen extends StatelessWidget {
   static const String routeName = '/registration';
 

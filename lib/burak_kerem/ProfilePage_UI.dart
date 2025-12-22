@@ -1,17 +1,7 @@
-<<<<<<< HEAD
-import 'package:bannerweb_mobile/burak_kerem/HomePage_UI.dart';
-import 'package:flutter/material.dart';
-import './../didar/FinalSchedulePage.dart'; 
-import './../didar/settingsPage.dart';
-
-class StudentScreen extends StatelessWidget {
-  static const String routeName = '/student';
-=======
 import 'package:bannerweb_mobile/didar/ProfileHeaderCard.dart';
 import 'package:bannerweb_mobile/ismayil/Routes.dart';
 import 'package:bannerweb_mobile/ismayil/app_scaffold.dart';
 import 'package:flutter/material.dart';
->>>>>>> origin/master
 
 class StudentScreen extends StatelessWidget {
   const StudentScreen({super.key});
@@ -136,17 +126,7 @@ class StudentScreen extends StatelessWidget {
                     label: 'Final Exam Schedule',
                     color: Colors.red,
                     onTap: () {
-<<<<<<< HEAD
-                      Navigator.pushNamed(context, FinalScheduleScreen.routeName);
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Opening Final Exam Schedule...'),
-                          duration: Duration(seconds: 1),
-                        ),
-                      );
-=======
                       Navigator.pushNamed(context, AppRoutes.finalExamSchedule);
->>>>>>> origin/master
                     },
                   ),
                 ),
@@ -157,17 +137,7 @@ class StudentScreen extends StatelessWidget {
                     label: 'Settings',
                     color: Colors.grey,
                     onTap: () {
-<<<<<<< HEAD
-                      Navigator.pushNamed(context, SettingsScreen.routeName);
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Opening Settings...'),
-                          duration: Duration(seconds: 1),
-                        ),
-                      );
-=======
                       Navigator.pushNamed(context, AppRoutes.settings);
->>>>>>> origin/master
                     },
                   ),
                 ),

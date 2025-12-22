@@ -1,13 +1,5 @@
-<<<<<<< HEAD
-import 'package:bannerweb_mobile/burak_kerem/HomePage_UI.dart';
-import 'package:flutter/material.dart';
-
-class SearchScreen extends StatefulWidget {
-  static const String routeName = '/search';
-=======
 import 'package:bannerweb_mobile/ismayil/app_scaffold.dart';
 import 'package:flutter/material.dart';
->>>>>>> origin/master
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});

@@ -1,7 +1,7 @@
 import 'package:bannerweb_mobile/Ismayil/SettingsPage.dart';
 import 'package:bannerweb_mobile/burak_kerem/DegreeAuditPage_UI.dart';
 import 'package:bannerweb_mobile/burak_kerem/FinancialAidScreenPage_UI.dart';
-import 'package:bannerweb_mobile/burak_kerem/HomePage_UI.dart';
+import 'package:bannerweb_mobile/burak_kerem/HomePage_UI.dart' hide HousingScreen, SearchScreen, StudentScreen, RegistrationScreen, StudentRecordsScreen, FinancialAidScreen, DegreeAuditScreen;
 import 'package:bannerweb_mobile/burak_kerem/HousingPage_UI.dart';
 import 'package:bannerweb_mobile/burak_kerem/ProfilePage_UI.dart';
 import 'package:bannerweb_mobile/burak_kerem/RegistrationPage_UI.dart';
