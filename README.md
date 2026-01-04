@@ -104,3 +104,21 @@ You may redistribute and/or modify this code under the terms of the GPLv2 licens
 
 See the [LICENSE](LICENSE) file for more details or visit  
 [https://www.gnu.org/licenses/old-licenses/gpl-2.0.html](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html).
+
+---
+
+## Testing
+
+This project includes unit and widget tests to ensure the reliability of key features.
+
+### Running Tests
+To run all tests, use the following command:
+```bash
+flutter test
+```
+
+### Test Descriptions
+- **Unit Test (`test/unit/theme_provider_test.dart`)**: Verifies the `ThemeProvider` logic, ensuring that the app correctly toggles between light and dark modes and persists the preference.
+- **Unit Test (`test/unit/routes_test.dart`)**: Verifies the `AppRoutes` constants to ensure all routes are properly formatted as valid paths (starting with `/`) and that critical routes exist.
+- **Widget Test (`test/widget/final_schedule_screen_test.dart`)**: Checks the `FinalScheduleScreen` to ensure that the UI renders correctly, including the presence of the AppBar title, header, and exam course cards.
+- **Widget Test (`test/widget/settings_screen_test.dart`)**: Checks the `SettingsScreen` to ensure that key elements like the language selector, dark mode toggle, and logout button are present and visible.
