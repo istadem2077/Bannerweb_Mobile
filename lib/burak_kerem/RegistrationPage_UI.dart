@@ -57,8 +57,7 @@ class RegistrationActionPage extends StatelessWidget {
   final String title;
   const RegistrationActionPage({super.key, required this.title});
 
-  static const url =
-      'https://suis.sabanciuniv.edu/prod/twbkwbis.P_SabanciLogin';
+  static const url = 'https://suis.sabanciuniv.edu/prod/twbkwbis.P_SabanciLogin';
 
   @override
   Widget build(BuildContext context) {
