@@ -1,6 +1,5 @@
 # Bannerweb Mobile
 Repository to host and collaborate on CS310 term project
-# Bannerweb Mobile
 
 ## Overview
 **Bannerweb Mobile** is a mobile application developed for Sabancı University students to access and manage their academic information directly from their smartphones.  
@@ -122,3 +121,57 @@ flutter test
 - **Unit Test (`test/unit/routes_test.dart`)**: Verifies the `AppRoutes` constants to ensure all routes are properly formatted as valid paths (starting with `/`) and that critical routes exist.
 - **Widget Test (`test/widget/final_schedule_screen_test.dart`)**: Checks the `FinalScheduleScreen` to ensure that the UI renders correctly, including the presence of the AppBar title, header, and exam course cards.
 - **Widget Test (`test/widget/settings_screen_test.dart`)**: Checks the `SettingsScreen` to ensure that key elements like the language selector, dark mode toggle, and logout button are present and visible.
+
+---
+
+## Setup and Installation
+
+### Prerequisites
+- Flutter SDK version 3.9.2 or higher
+- Dart SDK (included with Flutter)
+- Android Studio / Xcode (for mobile development)
+- Firebase account and project setup
+
+### Installation Steps
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/istadem2077/Bannerweb_Mobile.git
+   cd Bannerweb_Mobile
+   ```
+
+2. **Install Flutter dependencies**
+   ```bash
+   flutter pub get
+   ```
+
+3. **Firebase Configuration**
+   - The Firebase configuration is already included in `lib/firebase_options.dart`
+   - For Android: Ensure `google-services.json` is placed in `android/app/` (if not already present)
+   - For iOS: Ensure `GoogleService-Info.plist` is placed in `ios/Runner/` (if not already present)
+   - Note: These files may need to be downloaded from your Firebase console
+
+4. **Run the application**
+   ```bash
+   flutter run
+   ```
+
+### Flutter Version
+This project requires Flutter SDK version 3.9.2 or higher. Check your Flutter version with:
+```bash
+flutter --version
+```
+
+If you need to update Flutter:
+```bash
+flutter upgrade
+```
+
+---
+
+## Known Limitations and Bugs
+
+- Some features may require active internet connection for Firebase operations
+- Auto-login may not work on first launch if user data is not cached
+- Course registration features are currently in development phase
+- Some navigation routes may not be fully implemented yet
