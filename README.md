@@ -109,16 +109,53 @@ See the [LICENSE](LICENSE) file for more details or visit
 
 ## Testing
 
-This project includes unit and widget tests to ensure the reliability of key features.
+This project includes **unit and widget tests** to ensure that key features work correctly and the UI renders as expected. All tests can be run using Flutter’s built-in test framework.
 
 ### Running Tests
-To run all tests, use the following command:
+To run all tests in the project:
+
 ```bash
 flutter test
 ```
 
 ### Test Descriptions
-- **Unit Test (`test/unit/theme_provider_test.dart`)**: Verifies the `ThemeProvider` logic, ensuring that the app correctly toggles between light and dark modes and persists the preference.
-- **Unit Test (`test/unit/routes_test.dart`)**: Verifies the `AppRoutes` constants to ensure all routes are properly formatted as valid paths (starting with `/`) and that critical routes exist.
-- **Widget Test (`test/widget/final_schedule_screen_test.dart`)**: Checks the `FinalScheduleScreen` to ensure that the UI renders correctly, including the presence of the AppBar title, header, and exam course cards.
-- **Widget Test (`test/widget/settings_screen_test.dart`)**: Checks the `SettingsScreen` to ensure that key elements like the language selector, dark mode toggle, and logout button are present and visible.
+
+#### 1. Unit Tests
+
+* **ThemeProvider Tests (`test/unit/theme_provider_test.dart`)**: Verifies that the `ThemeProvider` correctly toggles between light and dark modes and updates its state properly.
+* Ensures initial theme mode is light.
+* Verifies that switching to dark mode updates `themeMode` and `isDarkMode`.
+* Confirms switching back to light mode restores the state.
+
+
+* **AppRoutes Tests (`test/unit/routes_test.dart`)**: Ensures that all routes in the app are valid and correctly defined.
+* Validates that all routes start with `/`.
+* Confirms essential routes such as `/` (login), `/home`, and `/settings` exist.
+* Verifies the route map keys match the constants defined in `AppRoutes`.
+
+
+
+#### 2. Widget Tests
+
+* **Final Exam Schedule Screen (`test/widget/final_schedule_screen_test.dart`)**: Tests `FinalExamSchedulePageMock` (mock version of the final exam schedule page) to verify UI rendering.
+* Checks for the presence of the page title: "Final Exam Schedule".
+* Verifies the rendering of `ProfileHeaderCard` with student information from `MockAuthProvider`.
+* Ensures proper display of mock exam cards.
+
+
+* **Settings Screen (`test/widget/settings_screen_test.dart`)**: Tests `SettingsPageMock` (mock version of the settings page) to ensure interactive elements function correctly.
+* Confirms presence of `ProfileHeaderCard` with correct student information.
+* Verifies the dark mode switch toggles correctly and updates the mock state.
+* Checks that the logout button is visible and responds to taps.
+
+
+
+---
+
+### Testing Approach Notes
+
+* **Mocks**: `MockAuthProvider` is used to simulate authentication data for widget tests, removing the need for Firebase initialization during testing.
+* **SharedPreferences**: Mocked in tests to simulate local storage without writing to disk.
+* **UI Checks**: Tests confirm that important UI components like headers, buttons, switches, and list items render correctly.
+
+
