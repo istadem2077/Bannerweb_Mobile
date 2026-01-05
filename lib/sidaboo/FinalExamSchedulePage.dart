@@ -16,100 +16,100 @@ class FinalExamSchedulePage extends StatefulWidget {
 class _FinalExamSchedulePageState extends State<FinalExamSchedulePage> {
   final DatabaseService _dbService = DatabaseService();
 
-  void _showExamDialog({DocumentSnapshot? doc}) {
-    final isEditing = doc != null;
-    final courseController = TextEditingController(
-      text: isEditing ? doc['courseName'] : '',
-    );
-    final timeController = TextEditingController(
-      text: isEditing ? doc['time'] : '',
-    );
-    final dateController = TextEditingController(
-      text: isEditing ? doc['date'] : '',
-    );
-    final instructorController = TextEditingController(
-      text: isEditing ? doc['instructor'] : '',
-    );
-    final locationController = TextEditingController(
-      text: isEditing ? doc['location'] : '',
-    );
-
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text(isEditing ? 'Edit Exam' : 'Add New Exam'),
-        content: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TextField(
-                controller: courseController,
-                decoration: const InputDecoration(
-                  labelText: 'Course Name (e.g., CS 310)',
-                ),
-              ),
-              TextField(
-                controller: timeController,
-                decoration: const InputDecoration(
-                  labelText: 'Time (e.g., 15:00)',
-                ),
-              ),
-              TextField(
-                controller: dateController,
-                decoration: const InputDecoration(
-                  labelText: 'Date (e.g., 3.12.2026)',
-                ),
-              ),
-              TextField(
-                controller: instructorController,
-                decoration: const InputDecoration(labelText: 'Instructor'),
-              ),
-              TextField(
-                controller: locationController,
-                decoration: const InputDecoration(labelText: 'Location'),
-              ),
-            ],
-          ),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text('Cancel'),
-          ),
-          ElevatedButton(
-            onPressed: () async {
-              final navigator = Navigator.of(context);
-              final messenger = ScaffoldMessenger.of(context);
-              try {
-                if (isEditing) {
-                  await _dbService.updateExam(
-                    docId: doc.id,
-                    courseName: courseController.text,
-                    time: timeController.text,
-                    date: dateController.text,
-                    instructor: instructorController.text,
-                    location: locationController.text,
-                  );
-                } else {
-                  await _dbService.addExam(
-                    courseName: courseController.text,
-                    time: timeController.text,
-                    date: dateController.text,
-                    instructor: instructorController.text,
-                    location: locationController.text,
-                  );
-                }
-                navigator.pop();
-              } catch (e) {
-                messenger.showSnackBar(SnackBar(content: Text(e.toString())));
-              }
-            },
-            child: Text(isEditing ? 'Save' : 'Add'),
-          ),
-        ],
-      ),
-    );
-  }
+  // void _showExamDialog({DocumentSnapshot? doc}) {
+  //   final isEditing = doc != null;
+  //   final courseController = TextEditingController(
+  //     text: isEditing ? doc['courseName'] : '',
+  //   );
+  //   final timeController = TextEditingController(
+  //     text: isEditing ? doc['time'] : '',
+  //   );
+  //   final dateController = TextEditingController(
+  //     text: isEditing ? doc['date'] : '',
+  //   );
+  //   final instructorController = TextEditingController(
+  //     text: isEditing ? doc['instructor'] : '',
+  //   );
+  //   final locationController = TextEditingController(
+  //     text: isEditing ? doc['location'] : '',
+  //   );
+  //
+  //   showDialog(
+  //     context: context,
+  //     builder: (context) => AlertDialog(
+  //       title: Text(isEditing ? 'Edit Exam' : 'Add New Exam'),
+  //       content: SingleChildScrollView(
+  //         child: Column(
+  //           mainAxisSize: MainAxisSize.min,
+  //           children: [
+  //             TextField(
+  //               controller: courseController,
+  //               decoration: const InputDecoration(
+  //                 labelText: 'Course Name (e.g., CS 310)',
+  //               ),
+  //             ),
+  //             TextField(
+  //               controller: timeController,
+  //               decoration: const InputDecoration(
+  //                 labelText: 'Time (e.g., 15:00)',
+  //               ),
+  //             ),
+  //             TextField(
+  //               controller: dateController,
+  //               decoration: const InputDecoration(
+  //                 labelText: 'Date (e.g., 3.12.2026)',
+  //               ),
+  //             ),
+  //             TextField(
+  //               controller: instructorController,
+  //               decoration: const InputDecoration(labelText: 'Instructor'),
+  //             ),
+  //             TextField(
+  //               controller: locationController,
+  //               decoration: const InputDecoration(labelText: 'Location'),
+  //             ),
+  //           ],
+  //         ),
+  //       ),
+  //       actions: [
+  //         TextButton(
+  //           onPressed: () => Navigator.pop(context),
+  //           child: const Text('Cancel'),
+  //         ),
+  //         ElevatedButton(
+  //           onPressed: () async {
+  //             final navigator = Navigator.of(context);
+  //             final messenger = ScaffoldMessenger.of(context);
+  //             try {
+  //               if (isEditing) {
+  //                 await _dbService.updateExam(
+  //                   docId: doc.id,
+  //                   courseName: courseController.text,
+  //                   time: timeController.text,
+  //                   date: dateController.text,
+  //                   instructor: instructorController.text,
+  //                   location: locationController.text,
+  //                 );
+  //               } else {
+  //                 await _dbService.addExam(
+  //                   courseName: courseController.text,
+  //                   time: timeController.text,
+  //                   date: dateController.text,
+  //                   instructor: instructorController.text,
+  //                   location: locationController.text,
+  //                 );
+  //               }
+  //               navigator.pop();
+  //             } catch (e) {
+  //               messenger.showSnackBar(SnackBar(content: Text(e.toString())));
+  //             }
+  //           },
+  //           child: Text(isEditing ? 'Save' : 'Add'),
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
 
   void _confirmDelete(String id) {
     showDialog(
@@ -164,14 +164,14 @@ class _FinalExamSchedulePageState extends State<FinalExamSchedulePage> {
                   'Final Exam Schedule',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
                 ),
-                IconButton(
-                  icon: const Icon(
-                    Icons.add_circle,
-                    color: Colors.blue,
-                    size: 30,
-                  ),
-                  onPressed: () => _showExamDialog(),
-                ),
+                // IconButton(
+                //   icon: const Icon(
+                //     Icons.add_circle,
+                //     color: Colors.blue,
+                //     size: 30,
+                //   ),
+                //   onPressed: () => _showExamDialog(),
+                // ),
               ],
             ),
             const SizedBox(height: 10),
@@ -208,7 +208,8 @@ class _FinalExamSchedulePageState extends State<FinalExamSchedulePage> {
                         final doc = filtered[index];
                         return _ExamCard(
                           doc: doc,
-                          onEdit: () => _showExamDialog(doc: doc),
+                          onEdit: () => (),
+                              // _showExamDialog(doc: doc),
                           onDelete: () => _confirmDelete(doc.id),
                         );
                       },
@@ -275,14 +276,15 @@ class _ExamCard extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    IconButton(
-                      icon: const Icon(Icons.edit, color: Colors.orange),
-                      onPressed: onEdit,
-                    ),
-                    IconButton(
-                      icon: const Icon(Icons.delete, color: Colors.red),
-                      onPressed: onDelete,
-                    ),
+                    // IconButton(
+                    //   icon: const Icon(Icons.edit, color: Colors.orange),
+                    //   onPressed: onEdit,
+                    // ),
+                    // IconButton(
+                    //   icon: const Icon(Icons.delete, color: Colors.red),
+                    //   onPressed: onDelete,
+                    // ),
+                    const SizedBox(height: 60),
                   ],
                 ),
               ],

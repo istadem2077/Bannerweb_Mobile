@@ -2,20 +2,26 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class DatabaseService {
-  final FirebaseFirestore _db = FirebaseFirestore.instance;
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseFirestore _db;
+  final FirebaseAuth _auth;
+
+  // Add a factory constructor for easier testing
+  DatabaseService({
+    FirebaseFirestore? firestore,
+    FirebaseAuth? auth,
+  })  : _db = firestore ?? FirebaseFirestore.instance,
+        _auth = auth ?? FirebaseAuth.instance;
+
+  // For testing, allow overriding the current user
+  String get _currentUserId {
+    final User? user = _auth.currentUser;
+    return user?.uid ?? 'test_user_id';
+  }
 
   // Collection reference
   CollectionReference get _examsRef => _db.collection('final_exams');
 
-  // Helper to get ID safely for testing
-  String get _currentUserId {
-    final User? user = _auth.currentUser;
-    // If no user is logged in, use a test ID so the app doesn't crash during development
-    return user?.uid ?? 'test_user_id';
-  }
-
-  // 1. CREATE: Add a new exam
+  // 1. CREATE
   Future<void> addExam({
     required String courseName,
     required String time,
@@ -29,14 +35,13 @@ class DatabaseService {
       'date': date,
       'instructor': instructor,
       'location': location,
-      'createdBy': _currentUserId, // Required field per instructions
-      'createdAt': FieldValue.serverTimestamp(), // Required field per instructions
+      'createdBy': _currentUserId,
+      'createdAt': FieldValue.serverTimestamp(),
     });
   }
 
-  // 2. READ: Get a stream of exams
+  // 2. READ
   Stream<QuerySnapshot> getExamsStream() {
-    // We still filter by ID in the UI so users don't see each other's test data
     return _examsRef
         .orderBy('createdAt', descending: true)
         .snapshots();

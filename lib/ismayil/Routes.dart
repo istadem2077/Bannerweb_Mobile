@@ -7,7 +7,6 @@ import 'package:bannerweb_mobile/burak_kerem/ProfilePage_UI.dart';
 import 'package:bannerweb_mobile/burak_kerem/RegistrationPage_UI.dart';
 import 'package:bannerweb_mobile/burak_kerem/SearchPage_UI.dart';
 import 'package:bannerweb_mobile/burak_kerem/StudentsRecords_UI.dart';
-import 'package:bannerweb_mobile/didar/FinalSchedulePage.dart';
 import 'package:bannerweb_mobile/ismayil/StudentHelp.dart';
 import 'package:bannerweb_mobile/ismayil/sign_up_page.dart';
 import 'package:bannerweb_mobile/mehlael/CourseListScreen.dart';
@@ -55,7 +54,11 @@ class AppRoutes {
     studentHelp: (context) => const StudentHelpScreen(),
     alscreen: (context) => const CourseListScreen(),
     courses: (context) => const DepartmentListScreen(),
-    courseinfoex: (context) => CourseRegExPage(),
+    // courseinfoex: (context) => CourseRegExPage(),
+    courseinfoex: (context) => CourseRegExPage(
+      pageType: CourseInfoPageType.info,
+    ),
+
     register: (context) => const SignUpPage(),
   };
 }

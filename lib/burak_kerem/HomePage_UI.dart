@@ -250,30 +250,6 @@ class HomeScreen extends StatelessWidget {
             ),
 
             const SizedBox(height: 8),
-
-            // Big button: Student Schedule Day & Time
-            OutlinedButton(
-              style: OutlinedButton.styleFrom(
-                side: BorderSide(
-                  color: Theme.of(context).primaryColor,
-                  width: 2,
-                ),
-                padding: const EdgeInsets.symmetric(
-                  vertical: 16,
-                  horizontal: 12,
-                ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
-              onPressed: () {
-                // TODO: go directly to schedule page
-              },
-              child: const Text(
-                'Student Schedule Day & Time',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-              ),
-            ),
           ],
         ),
       ),

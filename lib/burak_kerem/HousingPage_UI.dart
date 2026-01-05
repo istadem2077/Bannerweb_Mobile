@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HousingScreen extends StatelessWidget {
   static const String routeName = '/housing';
@@ -22,13 +23,11 @@ class HousingScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Header Section
               Padding(
                 padding: const EdgeInsets.fromLTRB(20, 8, 20, 0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Housing Title
                     const Text(
                       'Housing',
                       style: TextStyle(
@@ -38,20 +37,18 @@ class HousingScreen extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 12),
-                    // Yellow-green horizontal line
                     Container(
                       height: 4,
                       decoration: BoxDecoration(
-                        color: const Color(0xFFADFF2F), // Yellow-green color
+                        color: Color(0xFFADFF2F),
                         borderRadius: BorderRadius.circular(2),
                       ),
                     ),
                     const SizedBox(height: 4),
-                    // Dark blue horizontal line (close to yellow-green)
                     Container(
                       height: 1,
                       decoration: BoxDecoration(
-                        color: const Color(0xFF00008B), // Dark blue color
+                        color: Color(0xFF00008B),
                         borderRadius: BorderRadius.circular(1),
                       ),
                     ),
@@ -61,38 +58,46 @@ class HousingScreen extends StatelessWidget {
 
               const SizedBox(height: 24),
 
-              // Menu Item
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: InkWell(
-                  onTap: () {
-                    // TODO: Navigate to dormitory application form
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('Opening Dormitory Application Form...'),
-                        duration: Duration(seconds: 1),
-                      ),
+                  onTap: () async {
+                    final uri = Uri.parse(
+                      'https://suis.sabanciuniv.edu/prod/twbkwbis.P_SabanciLogin',
                     );
+
+                    try {
+                      await launchUrl(
+                        uri,
+                        mode: LaunchMode.externalApplication,
+                      );
+                    } catch (_) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text(
+                            'Housing applications are accessed via SIS. Please try again in a browser.',
+                          ),
+                        ),
+                      );
+                    }
                   },
                   child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 12),
                     child: Row(
                       children: [
-                        // Orange-brown ">" prefix
                         const Text(
                           '>',
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w600,
-                            color: Color(0xFFCD853F), // Orange-brown color
+                            color: Color(0xFFCD853F),
                           ),
                         ),
                         const SizedBox(width: 12),
-                        // Menu option text in blue
-                        Expanded(
+                        const Expanded(
                           child: Text(
                             'Yurt Başvuru Formu / Dormitory Application Form',
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w500,
                               color: Color(0xFF1155CC),
@@ -100,10 +105,9 @@ class HousingScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        // Chevron icon
                         Icon(
                           Icons.chevron_right,
-                          color: Colors.grey.shade600,
+                          color: Colors.grey,
                           size: 20,
                         ),
                       ],

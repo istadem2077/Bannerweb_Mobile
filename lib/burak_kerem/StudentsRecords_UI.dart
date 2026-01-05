@@ -67,12 +67,27 @@ class StudentRecordsScreen extends StatelessWidget {
                   children: studentRecordsOptions.map((option) {
                     return _StudentRecordsMenuItem(
                       title: option,
+                      // onTap: () {
+                      //   // TODO: Navigate to specific student records feature
+                      //   ScaffoldMessenger.of(context).showSnackBar(
+                      //     SnackBar(
+                      //       content: Text('Selected: $option'),
+                      //       duration: const Duration(seconds: 1),
+                      //     ),
+                      //   );
+                      // },
                       onTap: () {
-                        // TODO: Navigate to specific student records feature
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text('Selected: $option'),
-                            duration: const Duration(seconds: 1),
+                        showDialog(
+                          context: context,
+                          builder: (_) => AlertDialog(
+                            title: const Text('Access Restricted'),
+                            content: Text('$option is not available at this time.'),
+                            actions: [
+                              TextButton(
+                                onPressed: () => Navigator.pop(context),
+                                child: const Text('OK'),
+                              ),
+                            ],
                           ),
                         );
                       },
