@@ -1,11 +1,20 @@
 import 'package:bannerweb_mobile/providers/ismayil/auth_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 
 class DegreeAuditScreen extends StatelessWidget {
   static const String routeName = '/degree-audit';
 
   const DegreeAuditScreen({super.key});
+
+  Future<void> _openLink(String url) async {
+    final uri = Uri.parse(url);
+    if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
+      throw 'Could not launch $url';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,16 +25,19 @@ class DegreeAuditScreen extends StatelessWidget {
         description:
             'Complete your Final Major Declaration, view your all Major Declarations.',
         isRed: false,
+        link: 'https://suis.sabanciuniv.edu/prod/twbkwbis.P_SabanciLogin',
       ),
       _DegreeAuditItem(
         title: 'Graduation Application Form',
         description: null,
         isRed: false,
+        link: 'https://suis.sabanciuniv.edu/prod/twbkwbis.P_SabanciLogin',
       ),
       _DegreeAuditItem(
         title: 'Degree Evaluation (Summary)',
         description: null,
         isRed: true,
+        link: 'https://suis.sabanciuniv.edu/prod/twbkwbis.P_SabanciLogin',
       ),
     ];
 
@@ -91,14 +103,15 @@ class DegreeAuditScreen extends StatelessWidget {
                   children: degreeAuditItems.map((item) {
                     return _DegreeAuditItemWidget(
                       item: item,
-                      onTap: () {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text('Selected: ${item.title}'),
-                            duration: const Duration(seconds: 1),
-                          ),
-                        );
-                      },
+                      // onTap: () {
+                      //   ScaffoldMessenger.of(context).showSnackBar(
+                      //     SnackBar(
+                      //       content: Text('Selected: ${item.title}'),
+                      //       duration: const Duration(seconds: 1),
+                      //     ),
+                      //   );
+                      // },
+                      onTap: () => _openLink(item.link),
                     );
                   }).toList(),
                 ),
@@ -115,11 +128,13 @@ class _DegreeAuditItem {
   final String title;
   final String? description;
   final bool isRed;
+  final String link;
 
   const _DegreeAuditItem({
     required this.title,
     this.description,
     required this.isRed,
+    required this.link,
   });
 }
 

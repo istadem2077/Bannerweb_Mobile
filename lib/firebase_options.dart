@@ -17,10 +17,7 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -28,15 +25,9 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return macos;
       case TargetPlatform.windows:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for windows - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return windows;
       case TargetPlatform.linux:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for linux - '
@@ -65,4 +56,32 @@ class DefaultFirebaseOptions {
     storageBucket: 'bannerweb-mobile.firebasestorage.app',
     iosBundleId: 'com.example.bannerwebMobile',
   );
+
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyBvjGdyzGFBZNdgXQ7C3CghKDgQyuj6zhU',
+    appId: '1:472519183948:web:ad6bd0848114570ae7eee9',
+    messagingSenderId: '472519183948',
+    projectId: 'bannerweb-mobile',
+    authDomain: 'bannerweb-mobile.firebaseapp.com',
+    storageBucket: 'bannerweb-mobile.firebasestorage.app',
+  );
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyDokzz67oUixFcmvOyRLC8P0SLEq0a15a4',
+    appId: '1:472519183948:ios:19912374fe807dd9e7eee9',
+    messagingSenderId: '472519183948',
+    projectId: 'bannerweb-mobile',
+    storageBucket: 'bannerweb-mobile.firebasestorage.app',
+    iosBundleId: 'com.example.bannerwebMobile',
+  );
+
+  static const FirebaseOptions windows = FirebaseOptions(
+    apiKey: 'AIzaSyBvjGdyzGFBZNdgXQ7C3CghKDgQyuj6zhU',
+    appId: '1:472519183948:web:a0fedfa3b14f8a81e7eee9',
+    messagingSenderId: '472519183948',
+    projectId: 'bannerweb-mobile',
+    authDomain: 'bannerweb-mobile.firebaseapp.com',
+    storageBucket: 'bannerweb-mobile.firebasestorage.app',
+  );
+
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class FinancialAidScreen extends StatelessWidget {
   static const String routeName = '/financial-aid';
@@ -68,6 +69,7 @@ class FinancialAidScreen extends StatelessWidget {
                 ),
               ),
 
+
               const SizedBox(height: 24),
 
               // Content Sections
@@ -79,11 +81,12 @@ class FinancialAidScreen extends StatelessWidget {
                     return _FinancialAidSectionWidget(
                       section: section,
                       onTap: () {
-                        // TODO: Navigate to specific financial aid feature
                         ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text('Selected: ${section.title}'),
-                            duration: const Duration(seconds: 1),
+                          const SnackBar(
+                            content: Text(
+                              'This service is accessed via SIS. Use the "Go to SIS (BannerWeb)" button below.',
+                            ),
+                            duration: Duration(seconds: 2),
                           ),
                         );
                       },
@@ -91,6 +94,45 @@ class FinancialAidScreen extends StatelessWidget {
                   }).toList(),
                 ),
               ),
+
+              const SizedBox(height: 32),
+
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () async {
+                      final uri = Uri.parse(
+                        'https://suis.sabanciuniv.edu/prod/twbkwbis.P_SabanciLogin',
+                      );
+
+                      try {
+                        await launchUrl(
+                          uri,
+                          mode: LaunchMode.externalApplication,
+                        );
+                      } catch (_) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Unable to open SIS. Please try again in a browser.'),
+                          ),
+                        );
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(vertical: 14),
+                    ),
+                    child: const Text(
+                      'Go to SIS (BannerWeb)',
+                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                    ),
+                  ),
+                ),
+              ),
+
+              const SizedBox(height: 24),
+
             ],
           ),
         ),
