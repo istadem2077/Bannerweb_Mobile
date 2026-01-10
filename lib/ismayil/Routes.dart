@@ -1,4 +1,4 @@
-import 'package:bannerweb_mobile/Ismayil/SettingsPage.dart';
+import 'package:bannerweb_mobile/ismayil/SettingsPage.dart';
 import 'package:bannerweb_mobile/burak_kerem/DegreeAuditPage_UI.dart';
 import 'package:bannerweb_mobile/burak_kerem/FinancialAidScreenPage_UI.dart';
 import 'package:bannerweb_mobile/burak_kerem/HomePage_UI.dart';

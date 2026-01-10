@@ -1,8 +1,6 @@
 # Bannerweb Mobile
 Repository to host and collaborate on CS310 term project
 
----
-
 ## Overview
 
 **Bannerweb Mobile** is a mobile application developed for Sabancı University students to access and manage their academic information directly from their smartphones.
@@ -197,37 +195,43 @@ flutter test
 ### Installation Steps
 
 1. **Clone the repository**
-
    ```bash
    git clone https://github.com/istadem2077/Bannerweb_Mobile.git
    cd Bannerweb_Mobile
    ```
 
-2. **Install dependencies**
-
+2. **Install Flutter dependencies**
    ```bash
    flutter pub get
    ```
 
 3. **Firebase Configuration**
+   - The Firebase configuration is already included in `lib/firebase_options.dart`
+   - For Android: Ensure `google-services.json` is placed in `android/app/` (if not already present)
+   - For iOS: Ensure `GoogleService-Info.plist` is placed in `ios/Runner/` (if not already present)
+   - Note: These files may need to be downloaded from your Firebase console
 
-   * Firebase options are included in `lib/firebase_options.dart`
-   * Android: `android/app/google-services.json`
-   * iOS: `ios/Runner/GoogleService-Info.plist`
-
-4. **Run the app**
-
+4. **Run the application**
    ```bash
    flutter run
    ```
+
+### Flutter Version
+This project requires Flutter SDK version 3.9.2 or higher. Check your Flutter version with:
+```bash
+flutter --version
+```
+
+If you need to update Flutter:
+```bash
+flutter upgrade
+```
 
 ---
 
 ## Known Limitations and Bugs
 
-* Some features require an active internet connection
-* Auto-login may fail on first launch if cache is empty
-* Course registration features are still in development
-* Some navigation routes are partially implemented
-
----
+- Some features may require active internet connection for Firebase operations
+- Auto-login may not work on first launch if user data is not cached
+- Course registration features are currently in development phase
+- Some navigation routes may not be fully implemented yet
